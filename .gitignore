@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Exclude local project management folders
+antigravity-ide/
+awesome-skills*/
+Для оззнакомления*/
