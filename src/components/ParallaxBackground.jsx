@@ -13,26 +13,18 @@ export default function ParallaxBackground() {
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-primary-50 to-white opacity-80" />
 
-      {/* Layer 1: Subtle blue shapes */}
+      {/* Layer 1: Ambient soft organic glow */}
       <div style={layer1.style}>
-        <div 
-          className="floating-shape absolute top-[10%] left-[15%] w-[600px] h-[150px] rounded-full bg-gradient-to-r from-primary-200/20 to-transparent blur-[4px]"
-          style={{ 
-            transform: `${layer1.style.transform || ''} rotate(12deg)`,
-          }}
+        <div
+          className="floating-shape absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full bg-primary-200/20 blur-[120px]"
+          style={{ transform: `${layer1.style.transform || ''}` }}
         />
-        <div 
-          className="floating-shape-reverse absolute top-[65%] right-[-5%] w-[500px] h-[120px] rounded-full bg-gradient-to-r from-accent-200/20 to-transparent blur-[4px]"
-          style={{ transform: `rotate(-15deg)` }}
-        />
+        <div className="floating-shape-reverse absolute top-[65%] right-[-5%] w-[600px] h-[600px] rounded-full bg-accent-200/10 blur-[150px]" />
       </div>
 
-      {/* Layer 2: Mid shapes */}
+      {/* Layer 2: Mid glow */}
       <div style={layer2.style}>
-        <div 
-          className="floating-shape-slow absolute top-[35%] right-[10%] w-[350px] h-[90px] rounded-full bg-gradient-to-r from-primary-100/30 to-transparent border border-white/50 blur-[2px]"
-          style={{ transform: `rotate(-8deg)` }}
-        />
+        <div className="floating-shape-slow absolute top-[35%] right-[10%] w-[450px] h-[450px] rounded-full bg-primary-100/30 blur-[100px]" />
       </div>
 
       {/* Layer 4: Ambient glow orbs */}
