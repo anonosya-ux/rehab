@@ -20,7 +20,6 @@ class Particle {
   }
 
   move() {
-    // Check if particle is close enough to its target to slow down
     let proximityMult = 1;
     const distance = Math.sqrt(
       Math.pow(this.pos.x - this.target.x, 2) + Math.pow(this.pos.y - this.target.y, 2)
@@ -30,7 +29,6 @@ class Particle {
       proximityMult = distance / this.closeEnoughTarget;
     }
 
-    // Add force towards target
     const towardsTarget = {
       x: this.target.x - this.pos.x,
       y: this.target.y - this.pos.y,
@@ -58,7 +56,6 @@ class Particle {
     this.acc.x += steer.x;
     this.acc.y += steer.y;
 
-    // Move particle
     this.vel.x += this.acc.x;
     this.vel.y += this.acc.y;
     this.pos.x += this.vel.x;
@@ -68,12 +65,10 @@ class Particle {
   }
 
   draw(ctx, drawAsPoints) {
-    // Blend towards target color
     if (this.colorWeight < 1.0) {
       this.colorWeight = Math.min(this.colorWeight + this.colorBlendRate, 1.0);
     }
 
-    // Calculate current color
     const currentColor = {
       r: Math.round(this.startColor.r + (this.targetColor.r - this.startColor.r) * this.colorWeight),
       g: Math.round(this.startColor.g + (this.targetColor.g - this.startColor.g) * this.colorWeight),
@@ -93,18 +88,16 @@ class Particle {
 
   kill(width, height) {
     if (!this.isKilled) {
-      // Set target outside the scene
       const randomPos = this.generateRandomPos(width / 2, height / 2, (width + height) / 2);
       this.target.x = randomPos.x;
       this.target.y = randomPos.y;
 
-      // Begin blending color to black/transparent
       this.startColor = {
         r: this.startColor.r + (this.targetColor.r - this.startColor.r) * this.colorWeight,
         g: this.startColor.g + (this.targetColor.g - this.startColor.g) * this.colorWeight,
         b: this.startColor.b + (this.targetColor.b - this.startColor.b) * this.colorWeight,
       };
-      this.targetColor = { r: 0, g: 0, b: 0 };
+      this.targetColor = { r: 30, g: 58, b: 138 }; // Fade out to deep blue
       this.colorWeight = 0;
 
       this.isKilled = true;
@@ -112,8 +105,8 @@ class Particle {
   }
 
   generateRandomPos(x, y, mag) {
-    const randomX = Math.random() * 1000;
-    const randomY = Math.random() * 500;
+    const randomX = Math.random() * window.innerWidth;
+    const randomY = Math.random() * window.innerHeight;
 
     const direction = {
       x: randomX - x,
@@ -133,7 +126,7 @@ class Particle {
   }
 }
 
-const DEFAULT_WORDS = ["АНОНИМНО", "ЭФФЕКТИВНО", "БЕЗОПАСНО", "ЦЕЛЬ", "РЕАБИЛИТАЦИЯ"];
+const DEFAULT_WORDS = ["АНОНИМНО", "БЕЗОПАСНО", "ЦЕЛЬ", "РЕАБИЛИТАЦИЯ"];
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const canvasRef = useRef(null);
@@ -141,14 +134,13 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const particlesRef = useRef([]);
   const frameCountRef = useRef(0);
   const wordIndexRef = useRef(0);
-  const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false });
 
   const pixelSteps = 6;
   const drawAsPoints = false;
 
   const generateRandomPos = (x, y, mag) => {
-    const randomX = Math.random() * 1000;
-    const randomY = Math.random() * 500;
+    const randomX = Math.random() * window.innerWidth;
+    const randomY = Math.random() * window.innerHeight;
 
     const direction = { x: randomX - x, y: randomY - y };
     const magnitude = Math.sqrt(direction.x * direction.x + direction.y * direction.y);
@@ -167,20 +159,24 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const offscreenCtx = offscreenCanvas.getContext("2d");
 
     offscreenCtx.fillStyle = "white";
-    // Adjust font size for longer russian words
-    offscreenCtx.font = "bold 80px Arial";
+    // Adjust font size scaling to viewport width
+    const fontSize = Math.min(120, canvas.width / 10);
+    offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
     offscreenCtx.textAlign = "center";
     offscreenCtx.textBaseline = "middle";
-    offscreenCtx.fillText(word, canvas.width / 2, canvas.height / 2);
+    // Place text dynamically on the right side of the screen if large, or center if mobile
+    const textX = canvas.width > 1024 ? canvas.width * 0.7 : canvas.width / 2;
+    offscreenCtx.fillText(word, textX, canvas.height / 2);
 
     const imageData = offscreenCtx.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
 
-    // Project Colors
+    // Dark Theme Compatible Colors for Medical:
+    // White, Light Blue, Deep Red Accent
     const themeColors = [
-      { r: 30, g: 64, b: 175 },   // Primary dark blue
-      { r: 59, g: 130, b: 246 },  // Primary blue
-      { r: 220, g: 38, b: 38 }    // Accent red
+      { r: 255, g: 255, b: 255 },  // White
+      { r: 147, g: 197, b: 253 },   // Light blue (primary-300)
+      { r: 239, g: 68, b: 68 }      // Accent Red
     ];
     const newColor = themeColors[Math.floor(Math.random() * themeColors.length)];
 
@@ -188,8 +184,14 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     let particleIndex = 0;
 
     const coordsIndexes = [];
-    for (let i = 0; i < pixels.length; i += pixelSteps * 4) {
-      coordsIndexes.push(i);
+    for (let y = 0; y < canvas.height; y += pixelSteps) {
+      for (let x = 0; x < canvas.width; x += pixelSteps) {
+        const i = (y * canvas.width + x) * 4;
+        const alpha = pixels[i + 3];
+        if (alpha > 10) {
+            coordsIndexes.push(i);
+        }
+      }
     }
 
     for (let i = coordsIndexes.length - 1; i > 0; i--) {
@@ -197,10 +199,11 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
       [coordsIndexes[i], coordsIndexes[j]] = [coordsIndexes[j], coordsIndexes[i]];
     }
 
-    for (const coordIndex of coordsIndexes) {
-      const alpha = pixels[coordIndex + 3];
+    // Limit particles so it doesn't drop frames
+    const maxParticles = Math.min(coordsIndexes.length, 3000);
 
-      if (alpha > 0) {
+    for (let i = 0; i < maxParticles; i++) {
+        const coordIndex = coordsIndexes[i];
         const x = (coordIndex / 4) % canvas.width;
         const y = Math.floor(coordIndex / 4 / canvas.width);
 
@@ -215,9 +218,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
           particle.pos.x = randomPos.x;
           particle.pos.y = randomPos.y;
 
-          particle.maxSpeed = Math.random() * 20 + 20;   // MUCH faster so it assemblies in ~0.2s
+          particle.maxSpeed = Math.random() * 25 + 20;
           particle.maxForce = particle.maxSpeed * 0.1;
-          particle.particleSize = Math.random() * 2.5 + 1.5; // smaller, prettier particles
+          particle.particleSize = Math.random() * 2.5 + 1.5;
           particle.colorBlendRate = Math.random() * 0.05 + 0.01;
 
           particles.push(particle);
@@ -233,7 +236,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
 
         particle.target.x = x;
         particle.target.y = y;
-      }
     }
 
     for (let i = particleIndex; i < particles.length; i++) {
@@ -248,8 +250,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const ctx = canvas.getContext("2d");
     const particles = particlesRef.current;
 
-    // Use light background because the site is light mode (surface-soft)
-    ctx.fillStyle = "rgba(248, 250, 252, 0.1)"; // equivalent to surface-soft with opacity
+    // Use primary-900 with opacity for motion trail
+    ctx.fillStyle = "rgba(30, 58, 138, 0.15)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -259,29 +261,18 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
 
       if (particle.isKilled) {
         if (
-          particle.pos.x < 0 ||
-          particle.pos.x > canvas.width ||
-          particle.pos.y < 0 ||
-          particle.pos.y > canvas.height
+          particle.pos.x < -100 ||
+          particle.pos.x > canvas.width + 100 ||
+          particle.pos.y < -100 ||
+          particle.pos.y > canvas.height + 100
         ) {
           particles.splice(i, 1);
         }
       }
     }
 
-    if (mouseRef.current.isPressed && mouseRef.current.isRightClick) {
-      particles.forEach((particle) => {
-        const distance = Math.sqrt(
-          Math.pow(particle.pos.x - mouseRef.current.x, 2) + Math.pow(particle.pos.y - mouseRef.current.y, 2)
-        );
-        if (distance < 50) {
-          particle.kill(canvas.width, canvas.height);
-        }
-      });
-    }
-
     frameCountRef.current++;
-    if (frameCountRef.current % 240 === 0) {
+    if (frameCountRef.current % 180 === 0) { // Change word faster (every 3 secs)
       wordIndexRef.current = (wordIndexRef.current + 1) % words.length;
       nextWord(words[wordIndexRef.current], canvas);
     }
@@ -293,58 +284,28 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    canvas.width = 1000;
-    // Lowered the height to be more fitted to a hero section optionally
-    canvas.height = 400;
-
-    nextWord(words[0], canvas);
+    // Resize observer to handle dynamic window sizes
+    const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        nextWord(words[wordIndexRef.current], canvas);
+    };
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
     animate();
-
-    const handleMouseDown = (e) => {
-      mouseRef.current.isPressed = true;
-      mouseRef.current.isRightClick = e.button === 2;
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      mouseRef.current.x = (e.clientX - rect.left) * scaleX;
-      mouseRef.current.y = (e.clientY - rect.top) * scaleY;
-    };
-
-    const handleMouseUp = () => {
-      mouseRef.current.isPressed = false;
-      mouseRef.current.isRightClick = false;
-    };
-
-    const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      mouseRef.current.x = (e.clientX - rect.left) * scaleX;
-      mouseRef.current.y = (e.clientY - rect.top) * scaleY;
-    };
-
-    const handleContextMenu = (e) => e.preventDefault();
-
-    canvas.addEventListener("mousedown", handleMouseDown);
-    canvas.addEventListener("mouseup", handleMouseUp);
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("contextmenu", handleContextMenu);
 
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
-      canvas.removeEventListener("mousedown", handleMouseDown);
-      canvas.removeEventListener("mouseup", handleMouseUp);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("contextmenu", handleContextMenu);
+      window.removeEventListener('resize', resizeCanvas);
     };
   }, []);
 
-  // Removed hardcoded background so it blends with the parent
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="absolute inset-0 z-0 overflow-hidden bg-primary-900 mix-blend-screen pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="rounded-lg max-w-full h-auto"
+        className="w-full h-full opacity-60"
       />
     </div>
   );
