@@ -1,3 +1,5 @@
+import { hubData } from '../../data/hubs.js';
+
 export function onBeforePrerenderStart() {
-  return ['/narkomaniya', '/alkogolizm', '/reabilitaciya', '/igromaniya', '/soprovozhdenie'];
+  return Object.keys(hubData).map((hubId) => `/${hubId}`);
 }
