@@ -89,7 +89,7 @@ export default function PricingSection() {
           className="text-center mb-16 md:mb-24"
         >
           <span className="inline-block px-4 py-1.5 rounded-full border border-primary-200 text-xs text-primary-800 uppercase tracking-widest mb-6 font-bold bg-primary-100">Тарифы реабилитации</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-text-primary mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-text-accent-600 mb-6">
             Пакеты <span className="text-accent-600">услуг</span>
           </h2>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
@@ -117,7 +117,7 @@ export default function PricingSection() {
             >
               {/* Badge */}
               {pkg.badge && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full bg-accent-600 text-white text-sm font-bold shadow-md">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full bg-accent-600 text-primary-900 text-sm font-bold shadow-md">
                   {pkg.badge}
                 </div>
               )}
@@ -153,7 +153,7 @@ export default function PricingSection() {
                 onClick={() => setOpen(true)}
                 className={`w-full py-4 rounded-xl font-bold text-sm transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 ${
                   pkg.accent
-                    ? 'bg-accent-600 text-white hover:bg-accent-700 shadow-md'
+                    ? 'bg-accent-600 text-primary-900 hover:bg-accent-700 shadow-md'
                     : 'bg-primary-50 text-primary-800 hover:bg-primary-100'
                 }`}
               >

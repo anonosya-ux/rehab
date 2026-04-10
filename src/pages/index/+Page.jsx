@@ -77,14 +77,14 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-400 text-white font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-400 text-primary-900 font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
                   Подробнее о BOSlab
                 </button>
               </div>
 
               {/* Visual Placeholder */}
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary-800/50 to-accent-900/30 flex items-center justify-center overflow-hidden border border-white/5">
+                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary-800/50 to-accent-900/30 flex items-center justify-center overflow-hidden border border-primary-200">
                   <div className="text-center">
                     <div className="text-6xl mb-4">🧠</div>
                     <div className="text-lg font-semibold text-text-secondary">Нейробиоуправление</div>
@@ -185,13 +185,13 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button 
                   onClick={() => setOpen(true)}
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-accent-500 to-accent-400 text-white font-semibold text-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-accent-500 to-accent-400 text-primary-900 font-semibold text-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
                 >
                   Записаться на консультацию
                 </button>
                 <a
                   href="tel:+74954141113"
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl glass-light text-text-primary font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl glass-light text-text-accent-600 font-semibold hover:bg-surface-dark/10 transition-all flex items-center justify-center gap-2"
                 >
                   📞 +7 495 414-11-13
                 </a>

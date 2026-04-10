@@ -37,7 +37,7 @@ const reviews = [
 
 function ReviewCard({ review }) {
   return (
-    <div className="glass-card rounded-3xl border border-white/5 p-8 flex flex-col h-full hover:bg-white/10 transition-colors duration-300">
+    <div className="glass-card rounded-3xl border border-white/5 p-8 flex flex-col h-full hover:bg-surface-dark/10 transition-colors duration-300">
       <div className="flex items-center justify-between mb-6">
         <div className="flex gap-1 text-accent-400">
           {[...Array(review.rating)].map((_, i) => (
@@ -53,14 +53,14 @@ function ReviewCard({ review }) {
         "{review.text}"
       </p>
 
-      <div className="flex items-center justify-between border-t border-white/10 pt-6 mt-auto">
+      <div className="flex items-center justify-between border-t border-surface-dark pt-6 mt-auto">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500/20 to-primary-600/20 border border-primary-500/30 flex items-center justify-center text-primary-300 font-bold">
             {review.name.charAt(0)}
           </div>
           <span className="text-white font-medium">{review.name}</span>
         </div>
-        <span className="text-xs font-semibold px-3 py-1 bg-white/5 rounded-full text-white/50 border border-white/5 hidden sm:block">
+        <span className="text-xs font-semibold px-3 py-1 bg-surface-muted rounded-full text-text-muted border border-white/5 hidden sm:block">
           {review.tag}
         </span>
       </div>
@@ -79,7 +79,7 @@ export default function ReviewsPage() {
 
       <div className="container-main relative z-10">
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-white/60 uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-muted border border-surface-dark rounded-full text-xs font-semibold text-white/60 uppercase tracking-widest mb-6">
             Истории пациентов
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-6 leading-tight">
@@ -91,9 +91,9 @@ export default function ReviewsPage() {
         </div>
 
         {/* Video Review Highlight */}
-        <div className="mb-16 p-8 glass-light rounded-[2rem] border border-white/10 flex flex-col md:flex-row items-center gap-8 md:gap-12 relative overflow-hidden">
+        <div className="mb-16 p-8 glass-light rounded-[2rem] border border-surface-dark flex flex-col md:flex-row items-center gap-8 md:gap-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/10 blur-[100px] rounded-full" />
-          <div className="w-full md:w-1/2 aspect-video bg-surface-darker rounded-2xl relative group overflow-hidden border border-white/10 flex items-center justify-center">
+          <div className="w-full md:w-1/2 aspect-video bg-surface-darker rounded-2xl relative group overflow-hidden border border-surface-dark flex items-center justify-center">
             {/* Play Button Mockup */}
             <div className="w-16 h-16 bg-accent-500/90 rounded-full flex items-center justify-center text-white/90 group-hover:scale-110 group-hover:bg-accent-400 transition-all cursor-pointer shadow-glow z-10">
               <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ export default function ReviewsPage() {
         </div>
 
         {/* Call to Action Container */}
-        <div className="text-center bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-16 relative overflow-hidden group">
+        <div className="text-center bg-surface-muted border border-surface-dark rounded-[2rem] p-8 md:p-16 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           <h2 className="text-3xl font-playfair font-bold text-white mb-4 relative z-10">Ваша история тоже может быть со счастливым финалом</h2>
           <p className="text-white/60 mb-8 max-w-xl mx-auto relative z-10">Сделайте первый шаг уже сегодня. Свяжитесь со специалистами горячей линии для бесплатной и анонимной консультации.</p>

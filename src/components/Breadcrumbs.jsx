@@ -4,11 +4,10 @@ import { Fragment } from 'react';
  * SEO-Optimized Breadcrumbs with JSON-LD microdata fallback
  */
 export default function Breadcrumbs({ items = [] }) {
-  // Always include Home
-  const breadcrumbs = [
-    { label: 'Главная', href: '/' },
-    ...items
-  ];
+  // Always include Home if not already passed
+  const breadcrumbs = items[0]?.label === 'Главная' 
+    ? items 
+    : [{ label: 'Главная', href: '/' }, ...items];
 
   return (
     <nav aria-label="Вы здесь:" className="relative z-20">
@@ -39,7 +38,7 @@ export default function Breadcrumbs({ items = [] }) {
                 ) : (
                   <span 
                     itemProp="name" 
-                    className="text-text-primary pointer-events-none py-1"
+                    className="text-primary-800 font-medium pointer-events-none py-1"
                     aria-current="page"
                   >
                     {item.label}
@@ -49,7 +48,7 @@ export default function Breadcrumbs({ items = [] }) {
               </li>
               
               {!isLast && (
-                <li className="select-none text-white/20 px-1 transform translate-y-px" aria-hidden="true">
+                <li className="select-none text-primary-900/20 px-1 transform translate-y-px" aria-hidden="true">
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

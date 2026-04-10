@@ -14,7 +14,7 @@ export default function YandexMap() {
   }, []);
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] rounded-[32px] overflow-hidden glass-heavy shadow-glow-emerald border border-white/10 group">
+    <div className="relative w-full h-[400px] md:h-[500px] rounded-[32px] overflow-hidden glass-heavy shadow-glow-emerald border border-surface-dark group">
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-surface-darker/50">
           <div className="w-8 h-8 border-2 border-primary-500/30 border-t-primary-500 rounded-full animate-spin" />

@@ -80,7 +80,7 @@ const FAQSection = ({ faqs = [] }) => {
               className={`glass rounded-2xl overflow-hidden transition-all duration-300 ${
                 openIndex === idx 
                   ? 'border-primary-400/40 shadow-glow-emerald bg-white/[0.08]' 
-                  : 'border-white/5 hover:bg-white/[0.06] hover:border-white/10'
+                  : 'border-primary-200 hover:bg-white/[0.06] hover:border-surface-dark'
               }`}
             >
               <button
@@ -91,7 +91,7 @@ const FAQSection = ({ faqs = [] }) => {
                 <span className={`text-lg md:text-xl font-medium transition-colors pr-6 ${openIndex === idx ? 'text-primary-400' : 'text-text-primary'}`}>
                   {faq.question}
                 </span>
-                <span className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === idx ? 'bg-primary-500 text-surface-darker rotate-180' : 'bg-white/5 text-text-muted hover:bg-white/10'}`}>
+                <span className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${openIndex === idx ? 'bg-primary-500 text-surface-darker rotate-180' : 'bg-surface-muted text-text-muted hover:bg-surface-dark/10'}`}>
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -107,7 +107,7 @@ const FAQSection = ({ faqs = [] }) => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0 text-text-secondary leading-relaxed border-t border-white/5 mt-2 pt-6">
+                    <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0 text-text-secondary leading-relaxed border-t border-primary-200 mt-2 pt-6">
                       {faq.answer}
                     </div>
                   </motion.div>

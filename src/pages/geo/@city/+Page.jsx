@@ -62,10 +62,10 @@ export default function GeoPage() {
               { label: data.name },
             ]} />
           </div>
-          <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm mb-6 uppercase tracking-widest">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-surface-muted border border-surface-dark text-text-secondary text-sm mb-6 uppercase tracking-widest">
             Реабилитационный центр
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-medium text-text-primary mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-medium text-text-accent-600 mb-6">
             Реабилитация от зависимости в <span className="gradient-text">{data.name}</span>
           </h1>
           <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -87,8 +87,8 @@ export default function GeoPage() {
       <section className="py-16">
         <div className="container-main max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="glass-heavy p-10 rounded-[32px] border border-white/10 shadow-glow-emerald">
-              <h3 className="text-2xl font-display font-medium text-text-primary mb-6">Удобная локация</h3>
+            <div className="glass-heavy p-10 rounded-[32px] border border-surface-dark shadow-glow-emerald">
+              <h3 className="text-2xl font-display font-medium text-text-accent-600 mb-6">Удобная локация</h3>
               <ul className="space-y-6">
                 <li className="flex items-start gap-5">
                   <div className="w-14 h-14 rounded-2xl bg-primary-500/20 flex items-center justify-center flex-shrink-0 text-xl border border-primary-500/20">🚗</div>
@@ -107,8 +107,8 @@ export default function GeoPage() {
               </ul>
             </div>
             
-            <div className="glass p-10 rounded-[32px] border border-white/5">
-              <h3 className="text-2xl font-display font-medium text-text-primary mb-6">Почему выбирают нас</h3>
+            <div className="glass p-10 rounded-[32px] border border-primary-200">
+              <h3 className="text-2xl font-display font-medium text-text-accent-600 mb-6">Почему выбирают нас</h3>
               <ul className="space-y-4">
                 {data.benefits.map((ben, i) => (
                   <li key={i} className="flex items-start gap-3 text-text-secondary">
@@ -126,7 +126,7 @@ export default function GeoPage() {
 
           {/* Maps Block */}
           <div className="w-full">
-            <h3 className="text-2xl font-display font-medium text-text-primary mb-6 ml-4">Как добраться из г. {data.name}</h3>
+            <h3 className="text-2xl font-display font-medium text-text-accent-600 mb-6 ml-4">Как добраться из г. {data.name}</h3>
             <YandexMap />
           </div>
         </div>

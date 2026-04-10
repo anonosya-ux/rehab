@@ -17,7 +17,7 @@ export default function NotFoundPage() {
           </a>
           <a
             href="tel:+74954141113"
-            className="px-6 py-3 rounded-xl glass-light text-text-primary font-medium hover:bg-white/10 transition-all"
+            className="px-6 py-3 rounded-xl glass-light text-text-primary font-medium hover:bg-surface-dark/10 transition-all"
           >
             📞 Позвонить
           </a>

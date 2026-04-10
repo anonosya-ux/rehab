@@ -107,7 +107,7 @@ function ProfileCard({ doctor }) {
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/20 group h-full`}
+      className={`relative flex flex-col justify-between overflow-hidden rounded-3xl border border-surface-dark bg-surface-muted p-8 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/20 group h-full`}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
@@ -140,9 +140,9 @@ function ProfileCard({ doctor }) {
 
         {/* Action */}
         <div className="mt-auto pt-6 border-t border-white/5">
-          <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 group/btn px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent-400/50 text-white font-medium transition-all">
+          <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 group/btn px-5 py-2.5 rounded-xl bg-surface-muted hover:bg-surface-dark/10 border border-surface-dark hover:border-accent-400/50 text-white font-medium transition-all">
             <span>Записаться</span>
-            <svg className="w-4 h-4 text-white/50 group-hover/btn:text-accent-400 transform group-hover/btn:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-text-muted group-hover/btn:text-accent-400 transform group-hover/btn:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </button>
@@ -163,7 +163,7 @@ export default function SpecialistsPage() {
 
       <div className="container-main relative z-10">
         <div className="mb-16 text-center lg:text-left max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-white/60 uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-muted border border-surface-dark rounded-full text-xs font-semibold text-white/60 uppercase tracking-widest mb-6">
             Наша команда
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-text-primary mb-6 leading-tight">

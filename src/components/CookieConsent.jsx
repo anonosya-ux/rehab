@@ -28,7 +28,7 @@ export default function CookieConsent() {
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
           className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] w-[calc(100%-3rem)] sm:w-auto max-w-lg"
         >
-          <div className="glass-heavy rounded-[24px] p-5 flex flex-col sm:flex-row items-center gap-5 border border-white/10 shadow-glow-emerald">
+          <div className="glass-heavy rounded-[24px] p-5 flex flex-col sm:flex-row items-center gap-5 border border-surface-dark shadow-glow-emerald">
             <div className="text-sm text-text-secondary leading-relaxed text-center sm:text-left">
               Мы используем файлы cookie для улучшения работы сайта. Продолжая использование, вы соглашаетесь с нашей{' '}
               <a href="/privacy" className="text-primary-400 hover:text-primary-300 underline underline-offset-2">

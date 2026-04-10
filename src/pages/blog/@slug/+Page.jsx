@@ -79,9 +79,9 @@ export default function BlogPost() {
           <div className="flex items-center gap-4 mb-6 text-xs font-medium uppercase tracking-wider text-primary flex-wrap">
             <span className="bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">{post.category}</span>
             <span className="w-1.5 h-1.5 bg-white/30 rounded-full" />
-            <span className="text-white/50">Чтение: {post.readTime}</span>
+            <span className="text-text-muted">Чтение: {post.readTime}</span>
             <span className="w-1.5 h-1.5 bg-white/30 rounded-full" />
-            <span className="text-white/50">{post.date}</span>
+            <span className="text-text-muted">{post.date}</span>
           </div>
 
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-8 leading-tight">
@@ -89,13 +89,13 @@ export default function BlogPost() {
           </h1>
 
           {/* Author card — E-E-A-T signal */}
-          <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 inline-flex">
+          <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-muted border border-white/5 inline-flex">
             <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xl font-bold">
               {post.author.charAt(0)}
             </div>
             <div>
               <div className="text-white font-medium">{post.author}</div>
-              <div className="text-xs text-white/50">{post.authorTitle}</div>
+              <div className="text-xs text-text-muted">{post.authorTitle}</div>
             </div>
           </div>
         </header>
@@ -107,8 +107,8 @@ export default function BlogPost() {
           prose-p:leading-relaxed prose-p:mb-6
           prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary/80
           prose-strong:text-white
-          prose-blockquote:border-l-primary/50 prose-blockquote:bg-primary/5 prose-blockquote:rounded-r-xl prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:text-white/70 prose-blockquote:not-italic
-          prose-li:text-white/70
+          prose-blockquote:border-l-primary/50 prose-blockquote:bg-primary/5 prose-blockquote:rounded-r-xl prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:text-text-secondary prose-blockquote:not-italic
+          prose-li:text-text-secondary
           prose-ul:space-y-2"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
@@ -128,7 +128,7 @@ export default function BlogPost() {
                   <h4 className="text-lg font-medium text-white mt-2 group-hover:text-primary transition-colors line-clamp-2">
                     {related.title}
                   </h4>
-                  <p className="text-sm text-white/50 mt-2 line-clamp-2">{related.excerpt}</p>
+                  <p className="text-sm text-text-muted mt-2 line-clamp-2">{related.excerpt}</p>
                 </a>
               ))}
             </div>
@@ -146,7 +146,7 @@ export default function BlogPost() {
           }}
         >
           <h3 className="text-2xl font-semibold text-white mb-4">Остались вопросы?</h3>
-          <p className="text-white/70 mb-8 max-w-xl mx-auto">
+          <p className="text-text-secondary mb-8 max-w-xl mx-auto">
             Свяжитесь с нами для бесплатной анонимной консультации со специалистом клиники. Мы работаем круглосуточно.
           </p>
           <button 

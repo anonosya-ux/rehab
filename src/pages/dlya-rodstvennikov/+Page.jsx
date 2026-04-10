@@ -33,7 +33,7 @@ export default function ForRelativesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-text-primary mb-6"
+          className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-text-accent-600 mb-6"
         >
           Зависимость — болезнь <span className="gradient-text italic">всей семьи</span>
         </motion.h1>
@@ -55,15 +55,15 @@ export default function ForRelativesPage() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="glass-heavy rounded-[32px] p-8 md:p-12 shadow-glow-emerald border border-white/10 flex flex-col justify-between"
+          className="glass-heavy rounded-[32px] p-8 md:p-12 shadow-glow-emerald border border-surface-dark flex flex-col justify-between"
         >
           <div>
-            <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 shadow-inner">
+            <div className="w-16 h-16 rounded-2xl bg-surface-muted flex items-center justify-center mb-8 border border-surface-dark shadow-inner">
               <svg className="w-8 h-8 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
             </div>
-            <h2 className="text-3xl font-display font-medium text-text-primary mb-4">Интервенция</h2>
+            <h2 className="text-3xl font-display font-medium text-text-accent-600 mb-4">Интервенция</h2>
             <p className="text-text-secondary leading-relaxed mb-6">
               Зависимый отрицает проблему и категорически отказывается лечиться? Уговоры, слезы и угрозы не работают (анозогнозия).
             </p>
@@ -84,7 +84,7 @@ export default function ForRelativesPage() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="glass rounded-[32px] p-8 md:p-12 border border-white/5 flex flex-col justify-between hover:bg-white/[0.04] transition-colors"
+          className="glass rounded-[32px] p-8 md:p-12 border border-primary-200 flex flex-col justify-between hover:bg-white/[0.04] transition-colors"
         >
           <div>
             <div className="w-16 h-16 rounded-2xl bg-accent-500/10 flex items-center justify-center mb-8 border border-accent-500/20">
@@ -92,7 +92,7 @@ export default function ForRelativesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h2 className="text-3xl font-display font-medium text-text-primary mb-4">Признаки созависимости</h2>
+            <h2 className="text-3xl font-display font-medium text-text-accent-600 mb-4">Признаки созависимости</h2>
             <p className="text-text-secondary leading-relaxed mb-6">
               Созависимость — это патологическая адаптация к стрессу от жизни с химически зависимым человеком. Проверьте себя:
             </p>
@@ -109,7 +109,7 @@ export default function ForRelativesPage() {
           </div>
           <button 
             onClick={() => setOpen(true)}
-            className="w-full py-4 glass-light border border-white/10 text-text-primary font-bold rounded-2xl hover:bg-white/10 transition-all"
+            className="w-full py-4 glass-light border border-surface-dark text-text-accent-600 font-bold rounded-2xl hover:bg-surface-dark/10 transition-all"
           >
             Записаться в группу для родственников
           </button>
@@ -121,7 +121,7 @@ export default function ForRelativesPage() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-16 text-center max-w-3xl mx-auto p-8 rounded-3xl bg-white/[0.02] border border-white/5"
+        className="mt-16 text-center max-w-3xl mx-auto p-8 rounded-3xl bg-white/[0.02] border border-primary-200"
       >
         <p className="text-text-muted italic text-lg leading-relaxed">
           «Пока вы решаете проблемы зависимого, спасаете его от долгов и полиции — вы спонсируете его болезнь. По-настоящему любить зависимого — значит жестко исключить любую поддержку его употребления.»

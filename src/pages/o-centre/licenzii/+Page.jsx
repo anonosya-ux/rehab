@@ -16,7 +16,7 @@ export default function LicensesPage() {
 
       <div className="container-main relative z-10">
         <div className="text-center mb-16 max-w-2xl mx-auto">
-           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-white/60 uppercase tracking-widest mb-6">
+           <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-muted border border-surface-dark rounded-full text-xs font-semibold text-white/60 uppercase tracking-widest mb-6">
             Официальные документы
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white mb-6">
@@ -29,7 +29,7 @@ export default function LicensesPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {licenses.map((lic) => (
-            <div key={lic.id} className="glass-card rounded-[2rem] p-4 flex flex-col items-center group cursor-pointer border border-white/10 hover:bg-white/10 transition-colors">
+            <div key={lic.id} className="glass-card rounded-[2rem] p-4 flex flex-col items-center group cursor-pointer border border-surface-dark hover:bg-surface-dark/10 transition-colors">
               <div className="w-full aspect-[3/4] bg-surface-darker/50 rounded-2xl mb-6 relative overflow-hidden flex items-center justify-center">
                 {/* Mockup for License Image */}
                 <svg className="w-16 h-16 text-white/10 group-hover:text-primary-500/50 transition-colors" fill="currentColor" viewBox="0 0 24 24">

@@ -61,7 +61,7 @@ export default function TeamSection() {
             >
               <div className="flex items-start gap-4">
                 {/* Avatar Placeholder */}
-                <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center text-xl font-bold text-primary-800 flex-shrink-0 group-hover:scale-105 transition-transform group-hover:bg-primary-600 group-hover:text-white">
+                <div className="w-14 h-14 rounded-xl bg-primary-100 flex items-center justify-center text-xl font-bold text-primary-800 flex-shrink-0 group-hover:scale-105 transition-transform group-hover:bg-primary-600 group-hover:text-primary-900">
                   {member.initial}
                 </div>
                 <div className="flex-1 min-w-0">

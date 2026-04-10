@@ -130,7 +130,7 @@ const AIBotWidget = () => {
         {/* Floating Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(45,212,191,0.3)] transition-all duration-300 relative ${isOpen ? 'bg-white/10 rotate-90 scale-90' : 'bg-primary hover:scale-110 hover:shadow-[0_0_40px_rgba(45,212,191,0.5)]'}`}
+          className={`w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(45,212,191,0.3)] transition-all duration-300 relative ${isOpen ? 'bg-surface-dark/10 rotate-90 scale-90' : 'bg-primary hover:scale-110 hover:shadow-[0_0_40px_rgba(45,212,191,0.5)]'}`}
         >
           {isOpen ? (
             <svg className="w-8 h-8 text-white transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">

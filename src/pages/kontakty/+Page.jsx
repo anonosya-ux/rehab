@@ -29,7 +29,7 @@ export default function ContactsPage() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="glass-heavy rounded-[32px] p-8 md:p-12 shadow-glow-emerald border border-white/10 relative overflow-hidden"
+          className="glass-heavy rounded-[32px] p-8 md:p-12 shadow-glow-emerald border border-surface-dark relative overflow-hidden"
         >
           {/* Internal Glint */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
@@ -53,7 +53,7 @@ export default function ContactsPage() {
 
             {/* Address */}
             <li className="flex gap-5 border-t border-white/5 pt-10">
-              <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center border border-white/10 shrink-0">
+              <div className="w-14 h-14 rounded-full bg-surface-muted flex items-center justify-center border border-surface-dark shrink-0">
                 <svg className="w-6 h-6 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -70,7 +70,7 @@ export default function ContactsPage() {
 
              {/* Email Msg */}
              <li className="flex gap-5 border-t border-white/5 pt-10">
-              <div className="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center border border-white/10 shrink-0">
+              <div className="w-14 h-14 rounded-full bg-surface-muted flex items-center justify-center border border-surface-dark shrink-0">
                 <svg className="w-6 h-6 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
