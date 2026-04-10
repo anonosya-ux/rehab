@@ -97,7 +97,7 @@ class Particle {
         g: this.startColor.g + (this.targetColor.g - this.startColor.g) * this.colorWeight,
         b: this.startColor.b + (this.targetColor.b - this.startColor.b) * this.colorWeight,
       };
-      this.targetColor = { r: 30, g: 58, b: 138 }; // Fade out to deep blue
+      this.targetColor = { r: 30, g: 58, b: 138 };
       this.colorWeight = 0;
 
       this.isKilled = true;
@@ -126,7 +126,7 @@ class Particle {
   }
 }
 
-const DEFAULT_WORDS = ["АНОНИМНО", "БЕЗОПАСНО", "ЦЕЛЬ", "РЕАБИЛИТАЦИЯ"];
+const DEFAULT_WORDS = ["LOGO", "АНОНИМНО", "БЕЗОПАСНО", "ЦЕЛЬ", "РЕАБИЛИТАЦИЯ"];
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const canvasRef = useRef(null);
@@ -152,31 +152,15 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     return { x: x + direction.x, y: y + direction.y };
   };
 
-  const nextWord = (word, canvas) => {
-    const offscreenCanvas = document.createElement("canvas");
-    offscreenCanvas.width = canvas.width;
-    offscreenCanvas.height = canvas.height;
-    const offscreenCtx = offscreenCanvas.getContext("2d");
-
-    offscreenCtx.fillStyle = "white";
-    // Adjust font size scaling to viewport width
-    const fontSize = Math.min(120, canvas.width / 10);
-    offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
-    offscreenCtx.textAlign = "center";
-    offscreenCtx.textBaseline = "middle";
-    // Place text dynamically on the right side of the screen if large, or center if mobile
-    const textX = canvas.width > 1024 ? canvas.width * 0.7 : canvas.width / 2;
-    offscreenCtx.fillText(word, textX, canvas.height / 2);
-
+  const processImageData = (offscreenCtx, canvas) => {
     const imageData = offscreenCtx.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
 
-    // Dark Theme Compatible Colors for Medical:
-    // White, Light Blue, Deep Red Accent
+    // Dark Theme Compatible Colors for Medical
     const themeColors = [
       { r: 255, g: 255, b: 255 },  // White
-      { r: 147, g: 197, b: 253 },   // Light blue (primary-300)
-      { r: 239, g: 68, b: 68 }      // Accent Red
+      { r: 147, g: 197, b: 253 },  // Light blue (primary-300)
+      { r: 239, g: 68, b: 68 }     // Accent Red
     ];
     const newColor = themeColors[Math.floor(Math.random() * themeColors.length)];
 
@@ -200,7 +184,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     }
 
     // Limit particles so it doesn't drop frames
-    const maxParticles = Math.min(coordsIndexes.length, 3000);
+    const maxParticles = Math.min(coordsIndexes.length, 4500);
 
     for (let i = 0; i < maxParticles; i++) {
         const coordIndex = coordsIndexes[i];
@@ -232,14 +216,61 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
           b: particle.startColor.b + (particle.targetColor.b - particle.startColor.b) * particle.colorWeight,
         };
         particle.targetColor = newColor;
-        particle.colorWeight = 0;
+        // Make particles a bit larger when forming the logo
+        if (words[wordIndexRef.current] === "LOGO") {
+          particle.particleSize = Math.random() * 3 + 2;
+        }
 
+        particle.colorWeight = 0;
         particle.target.x = x;
         particle.target.y = y;
     }
 
     for (let i = particleIndex; i < particles.length; i++) {
       particles[i].kill(canvas.width, canvas.height);
+    }
+  };
+
+  const nextWord = (word, canvas) => {
+    const offscreenCanvas = document.createElement("canvas");
+    offscreenCanvas.width = canvas.width;
+    offscreenCanvas.height = canvas.height;
+    const offscreenCtx = offscreenCanvas.getContext("2d");
+
+    const isDesktop = canvas.width > 1024;
+    const textX = isDesktop ? canvas.width * 0.75 : canvas.width / 2;
+
+    if (word === "LOGO") {
+       const img = new Image();
+       const svgString = `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="65" r="32" stroke="white" stroke-width="12" fill="none" />
+          <circle cx="50" cy="65" r="16" stroke="white" stroke-width="10" fill="none" />
+          <circle cx="50" cy="65" r="5" fill="white" />
+          <polygon points="50,65 48,45 65,58" fill="white" />
+          <polygon points="55,52 105,20 115,25 60,65" fill="white" />
+          <text x="65" y="38" transform="rotate(-33 65 38)" fill="white" font-family="Arial, sans-serif" font-weight="900" font-size="16px">ЦЕЛЬ</text>
+       </svg>`;
+       const blob = new Blob([svgString], { type: 'image/svg+xml' });
+       const url = URL.createObjectURL(blob);
+       
+       img.onload = () => {
+          const logoSize = isDesktop ? Math.min(canvas.width * 0.4, 500) : Math.min(canvas.width * 0.7, 300);
+          const imgX = textX - logoSize / 2;
+          const imgY = canvas.height / 2 - logoSize / 2;
+          
+          offscreenCtx.drawImage(img, imgX, imgY, logoSize, logoSize);
+          URL.revokeObjectURL(url);
+          processImageData(offscreenCtx, canvas);
+       };
+       img.src = url;
+    } else {
+       offscreenCtx.fillStyle = "white";
+       const fontSize = Math.min(100, canvas.width / 12);
+       offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
+       offscreenCtx.textAlign = "center";
+       offscreenCtx.textBaseline = "middle";
+       offscreenCtx.fillText(word, textX, canvas.height / 2);
+       processImageData(offscreenCtx, canvas);
     }
   };
 
@@ -250,7 +281,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const ctx = canvas.getContext("2d");
     const particles = particlesRef.current;
 
-    // Use primary-900 with opacity for motion trail
     ctx.fillStyle = "rgba(30, 58, 138, 0.15)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -272,7 +302,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     }
 
     frameCountRef.current++;
-    if (frameCountRef.current % 180 === 0) { // Change word faster (every 3 secs)
+    if (frameCountRef.current % 240 === 0) { // Change word slightly slower to appreciate the logo
       wordIndexRef.current = (wordIndexRef.current + 1) % words.length;
       nextWord(words[wordIndexRef.current], canvas);
     }
@@ -284,10 +314,10 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Resize observer to handle dynamic window sizes
     const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        // Re-calculate the word positions when resizing
         nextWord(words[wordIndexRef.current], canvas);
     };
     
@@ -302,10 +332,10 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-primary-900 mix-blend-screen pointer-events-none">
+    <div className="absolute inset-0 z-0 overflow-hidden bg-primary-900 pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-60"
+        className="w-full h-full opacity-60 mix-blend-screen"
       />
     </div>
   );
