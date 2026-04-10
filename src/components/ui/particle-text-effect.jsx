@@ -144,7 +144,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false });
 
   const pixelSteps = 6;
-  const drawAsPoints = true;
+  const drawAsPoints = false;
 
   const generateRandomPos = (x, y, mag) => {
     const randomX = Math.random() * 1000;
@@ -215,10 +215,10 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
           particle.pos.x = randomPos.x;
           particle.pos.y = randomPos.y;
 
-          particle.maxSpeed = Math.random() * 6 + 4;
-          particle.maxForce = particle.maxSpeed * 0.05;
-          particle.particleSize = Math.random() * 6 + 6;
-          particle.colorBlendRate = Math.random() * 0.0275 + 0.0025;
+          particle.maxSpeed = Math.random() * 20 + 20;   // MUCH faster so it assemblies in ~0.2s
+          particle.maxForce = particle.maxSpeed * 0.1;
+          particle.particleSize = Math.random() * 2.5 + 1.5; // smaller, prettier particles
+          particle.colorBlendRate = Math.random() * 0.05 + 0.01;
 
           particles.push(particle);
         }
