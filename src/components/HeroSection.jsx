@@ -41,14 +41,16 @@ export default function HeroSection() {
       {/* Deep Parallax Background Image */}
       <motion.div 
         style={{ scale: bgScale, y: bgY }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-primary-950"
       >
         <img 
-          src="/images/presentation-07.png" 
-          alt="Клиника Цель" 
-          className="w-full h-full object-cover object-center opacity-80 mix-blend-luminosity" 
+          src="/images/clinic-hero-luxury.png" 
+          alt="Роскошный интерьер реабилитационного центра" 
+          className="w-full h-full object-cover object-center opacity-50" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-primary-900/80 to-primary-900/40 mix-blend-multiply" />
+        {/* Magic UI Glassmorphism & Contrast Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-950/60 via-transparent to-primary-950/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-950/80 via-primary-950/40 to-transparent" />
       </motion.div>
 
       {/* Background Particle Layer */}
@@ -116,20 +118,21 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto mt-4"
+            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mt-6"
           >
             <LiquidButton
               onClick={() => setOpen?.(true)}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto shadow-[0_0_40px_rgba(45,212,191,0.3)] min-w-[260px]"
             >
-              Забронировать место
+              Бесплатная консультация
             </LiquidButton>
             
             <a
               href="tel:+74954141113"
-              className="w-full sm:w-auto px-6 sm:px-10 py-5 sm:py-5 rounded-2xl text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 backdrop-blur-sm"
+              className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-4 rounded-2xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-white/40 backdrop-blur-md bg-white/5"
             >
-              Узнать больше
+              <svg className="w-5 h-5 text-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              Срочный вызов (24/7)
             </a>
           </motion.div>
         </div>
