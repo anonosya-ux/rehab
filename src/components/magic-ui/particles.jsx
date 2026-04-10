@@ -1,5 +1,14 @@
 import { useEffect, useRef } from "react";
 
+const hexToRgb = (hex) => {
+  let _hex = hex.replace("#", "");
+  if (_hex.length === 3) {
+    _hex = `${_hex[0]}${_hex[0]}${_hex[1]}${_hex[1]}${_hex[2]}${_hex[2]}`;
+  }
+  const color = parseInt(_hex, 16);
+  return [(color >> 16) & 255, (color >> 8) & 255, color & 255];
+};
+
 export function Particles({
   className = "",
   quantity = 30,
@@ -109,15 +118,6 @@ export function Particles({
         circles.current.push(circle);
       }
     }
-  };
-
-  const hexToRgb = (hex) => {
-    let _hex = hex.replace("#", "");
-    if (_hex.length === 3) {
-      _hex = `${_hex[0]}${_hex[0]}${_hex[1]}${_hex[1]}${_hex[2]}${_hex[2]}`;
-    }
-    const color = parseInt(_hex, 16);
-    return [(color >> 16) & 255, (color >> 8) & 255, color & 255];
   };
 
   const clearContext = () => {
