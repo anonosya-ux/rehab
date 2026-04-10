@@ -42,7 +42,7 @@ export default function HomePage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="section-padding relative z-10" 
+        className="section-padding bg-transparent z-10 relative" 
         id="boslab-teaser"
       >
         <div className="container-main max-w-6xl">
@@ -118,7 +118,7 @@ export default function HomePage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="section-padding bg-surface-darker relative overflow-hidden" 
+        className="section-padding bg-transparent border-t border-surface-dark z-10 relative" 
         id="location-section"
       >
         <div className="container-main relative z-10">

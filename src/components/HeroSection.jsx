@@ -31,7 +31,7 @@ export default function HeroSection() {
   return (
     <section 
       ref={ref}
-      className="relative min-h-[100svh] overflow-hidden bg-primary-900"
+      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-primary-900/80 backdrop-blur-sm border-b border-white/10 pb-16 pt-20"
     >
       {/* Background Particle Layer */}
       <ParticleTextEffect />

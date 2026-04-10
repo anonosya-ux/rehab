@@ -256,8 +256,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const ctx = canvas.getContext("2d");
     const particles = particlesRef.current;
 
-    ctx.fillStyle = "rgba(30, 58, 138, 0.15)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const particle = particles[i];
@@ -311,7 +310,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-primary-900 pointer-events-none">
+    <div className="absolute inset-0 z-0 overflow-hidden bg-transparent pointer-events-none">
       <canvas
         ref={canvasRef}
         style={{ width: '100%', height: '100%' }}
