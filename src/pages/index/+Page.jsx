@@ -86,25 +86,43 @@ export default function HomePage() {
                 </button>
               </div>
 
-              {/* Visual Glass Box */}
-              <div className="relative group perspective-[1000px]">
+              {/* Visual Functional Box */}
+              <div className="relative group perspective-[1000px] mt-8 lg:mt-0">
                 <motion.div 
-                  whileHover={{ rotateY: 5, rotateX: 5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="aspect-square rounded-[3rem] bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 flex flex-col items-center justify-center overflow-hidden border border-white/20 shadow-[-20px_20px_60px_rgba(30,58,138,0.3)] relative"
+                  whileHover={{ rotateY: 3, rotateX: -3 }}
+                  className="aspect-[4/3] sm:aspect-square rounded-[2rem] sm:rounded-[3rem] bg-[#0A101D] flex flex-col justify-between overflow-hidden border border-accent-500/20 shadow-[0_20px_50px_rgba(30,58,138,0.4)] relative p-6 sm:p-8"
                 >
                   <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/30 rounded-full blur-[80px]" />
                   
-                  <div className="text-center relative z-10 px-8">
-                    <div className="mb-8 flex justify-center w-full">
-                      <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-white/5 border border-white/20 backdrop-blur-3xl shadow-[0_0_80px_rgba(255,255,255,0.1)] flex items-center justify-center group-hover:scale-110 transition-transform duration-500 relative">
-                        <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-20"></div>
-                        <Brain className="w-16 h-16 md:w-24 md:h-24 text-white opacity-90 drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]" strokeWidth={1} />
-                      </div>
+                  {/* Top Status Bar */}
+                  <div className="flex justify-between items-center w-full z-10">
+                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-500/10 border border-accent-500/20">
+                       <span className="w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+                       <span className="text-xs font-mono text-accent-400/90 tracking-wider font-semibold">СЕНСОР ЭЭГ</span>
+                     </div>
+                     <span className="font-mono text-xs font-bold text-primary-300/50">BOSLAB v3.2</span>
+                  </div>
+
+                  {/* Center Brain Vis */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center">
+                    <div className="absolute w-[150%] h-40 bg-accent-500/10 blur-[60px] rotate-[-15deg] pointer-events-none" />
+                    <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border border-white/10 flex items-center justify-center bg-white/5 backdrop-blur-md">
+                      <div className="absolute inset-0 rounded-full border border-accent-400/20 scale-[1.15] animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]" />
+                      <div className="absolute inset-0 border-[2px] border-transparent border-t-accent-400/60 rounded-full animate-spin [animation-duration:4s]" />
+                      <Brain className="w-14 h-14 text-white drop-shadow-[0_0_15px_rgba(45,212,191,0.8)]" strokeWidth={1} />
                     </div>
-                    <div className="text-2xl font-display font-black text-white mb-2">Нейробиоуправление</div>
-                    <div className="text-base text-primary-200/80 font-medium tracking-wide">Альфа & Бета ритмы ЭЭГ</div>
+                  </div>
+
+                  {/* Bottom Stats Grid */}
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full z-10 mt-auto">
+                     <div className="bg-white/5 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/10 flex flex-col">
+                        <span className="text-[10px] sm:text-xs uppercase tracking-widest text-primary-200/60 mb-1 font-bold">Альфа (Релакс)</span>
+                        <div className="text-xl sm:text-2xl font-mono text-white flex items-end gap-1">11.4 <span className="text-xs text-primary-400 mb-0.5 sm:mb-1">Hz</span></div>
+                     </div>
+                     <div className="bg-white/5 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/10 flex flex-col">
+                        <span className="text-[10px] sm:text-xs uppercase tracking-widest text-primary-200/60 mb-1 font-bold">Бета (Фокус)</span>
+                        <div className="text-xl sm:text-2xl font-mono text-white flex items-end gap-1">18.2 <span className="text-xs text-primary-400 mb-0.5 sm:mb-1">Hz</span></div>
+                     </div>
                   </div>
                 </motion.div>
               </div>

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { Award, Users, Activity, ShieldCheck } from 'lucide-react'
 import { useContactModal } from '@/components/ContactModal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { ParticleTextEffect } from '@/components/ui/particle-text-effect'
@@ -7,10 +8,10 @@ import { GooeyText } from '@/components/ui/gooey-text-morphing'
 import { LiquidButton } from '@/components/ui/liquid-glass-button'
 
 const TRUST_STATS = [
-  { value: 10, label: 'лет опыта', suffix: '+' },
-  { value: 14, label: 'специалистов', suffix: '+' },
-  { value: 92, label: 'успешных ремиссий', suffix: '%' },
-  { value: 4, label: 'программы', suffix: '' },
+  { value: 10, label: 'лет опыта', suffix: '+', icon: Award },
+  { value: 14, label: 'специалистов', suffix: '+', icon: Users },
+  { value: 92, label: 'успешных ремиссий', suffix: '%', icon: Activity },
+  { value: 4, label: 'программы', suffix: '', icon: ShieldCheck },
 ]
 
 export default function HeroSection() {
@@ -46,11 +47,12 @@ export default function HeroSection() {
         <img 
           src="/images/clinic-hero-luxury.png" 
           alt="Роскошный интерьер реабилитационного центра" 
-          className="w-full h-full object-cover object-center opacity-50" 
+          className="w-full h-full object-cover object-center opacity-60" 
         />
         {/* Magic UI Glassmorphism & Contrast Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-950/60 via-transparent to-primary-950/90" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-950/80 via-primary-950/40 to-transparent" />
+        <div className="absolute inset-0 bg-primary-950/50 sm:bg-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-950/80 sm:from-primary-950/60 via-primary-950/40 sm:via-transparent to-primary-950/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-950/95 via-primary-950/60 sm:via-primary-950/40 to-transparent" />
       </motion.div>
 
       {/* Background Particle Layer */}
@@ -93,9 +95,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-2xl text-primary-100 leading-relaxed mb-6 max-w-2xl font-light drop-shadow-md"
+            className="text-lg md:text-2xl text-white/95 leading-relaxed mb-6 max-w-2xl font-medium drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] [text-shadow:0_2px_4px_rgba(0,0,0,0.4)]"
           >
-            Комплексный подход к лечению независимости. Опытные специалисты, 100% анонимность и комфортные условия для начала новой жизни.
+            Комплексный подход к лечению зависимости. Опытные специалисты, 100% анонимность и комфортные условия для начала новой жизни.
           </motion.p>
 
           <motion.div
@@ -147,10 +149,9 @@ export default function HeroSection() {
           <div className="bg-surface-soft/95 backdrop-blur-xl rounded-3xl p-4 sm:p-6 md:p-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-6 md:gap-8 shadow-2xl border border-white/40">
             {TRUST_STATS.map((stat, i) => (
               <div key={i} className="flex-1 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 text-center sm:text-left">
-                <div className="w-14 h-14 rounded-2xl bg-primary-100 text-primary-800 flex items-center justify-center shrink-0 shadow-inner">
-                   <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                   </svg>
+                <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md text-white flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.1)] relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <stat.icon className="w-6 h-6 text-accent-300 drop-shadow-md relative z-10" />
                 </div>
                 <div>
                   <div className="text-3xl md:text-4xl font-bold text-primary-900 font-display flex items-end justify-center sm:justify-start gap-1">
