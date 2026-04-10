@@ -71,23 +71,23 @@ export default function ReviewsSection() {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden bg-background">
+    <section className="py-24 relative overflow-hidden bg-surface-soft">
       {/* Schema.org AggregateRating + Reviews JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
       {/* Background gradients */}
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-surface-soft to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-surface-soft to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-surface-soft to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-surface-soft to-transparent z-10 pointer-events-none" />
 
       <div className="container-main relative z-20 mx-auto max-w-6xl text-center mb-16">
         <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium uppercase tracking-widest mb-6">
           Истории успеха
         </div>
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-white mb-6">
+        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-text-primary mb-6">
           Отзывы наших <span className="text-primary italic">резидентов</span>
         </h2>
         <p className="text-text-secondary max-w-2xl mx-auto text-lg">
@@ -100,17 +100,17 @@ export default function ReviewsSection() {
           {MARQUEE_REVIEWS.map((review, idx) => (
             <div 
               key={idx} 
-              className="w-[350px] md:w-[400px] shrink-0 rounded-3xl glass-card border border-white/5 p-8 hover:border-primary/30 transition-all duration-300 relative group/card"
+              className="w-[350px] md:w-[400px] shrink-0 rounded-3xl glass border border-surface-dark p-8 hover:border-primary/30 transition-all duration-300 relative group/card"
             >
               <div className="flex gap-1 mb-6">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star 
                     key={i} 
-                    className={`w-5 h-5 ${i < review.rating ? 'text-accent-400 fill-accent-400' : 'text-white/20'}`} 
+                    className={`w-5 h-5 ${i < review.rating ? 'text-accent-400 fill-accent-400' : 'text-surface-dark fill-surface-dark'}`} 
                   />
                 ))}
               </div>
-              <p className="text-white/80 text-lg leading-relaxed mb-8 font-light italic">
+              <p className="text-text-secondary text-lg leading-relaxed mb-8 font-light italic">
                 "{review.text}"
               </p>
               <div className="flex items-center gap-4 mt-auto">
@@ -121,7 +121,7 @@ export default function ReviewsSection() {
                   loading="lazy"
                 />
                 <div>
-                  <h4 className="text-white font-medium">{review.author}</h4>
+                  <h4 className="text-text-primary font-medium">{review.author}</h4>
                   <p className="text-text-muted text-sm">{review.role}</p>
                 </div>
               </div>
