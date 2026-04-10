@@ -335,3 +335,26 @@ html {
     @apply border-border outline-ring/50;
   }
 }
+@keyframes marquee-horizontal {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--gap))); }
+}
+
+@utility animate-marquee {
+  animation: marquee-horizontal var(--duration) linear infinite;
+}
+@utility animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+@keyframes border-beam {
+  100% { offset-distance: 100%; }
+}
+
+@utility animate-border-beam {
+  animation: border-beam calc(var(--duration)*1s) infinite linear;
+}

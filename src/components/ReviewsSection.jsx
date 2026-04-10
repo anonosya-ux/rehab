@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1';
+import { Marquee } from '@/components/magic-ui/marquee';
 
 const testimonials = [
   {
@@ -59,9 +59,21 @@ const testimonials = [
   },
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const firstRow = testimonials.slice(0, Math.ceil(testimonials.length / 2));
+const secondRow = testimonials.slice(Math.ceil(testimonials.length / 2));
+
+const ReviewCard = ({ text, image, name, role }) => (
+  <div className="relative w-80 max-w-full flex-shrink-0 overflow-hidden rounded-3xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 shadow-[0_10px_30px_-15px_rgba(30,58,138,0.1)] hover:shadow-[0_15px_40px_-15px_rgba(30,58,138,0.2)] transition-shadow duration-300">
+    <div className="flex flex-row items-center gap-4 mb-4">
+      <img className="rounded-full w-12 h-12 object-cover border-2 border-white shadow-sm" alt={name} src={image} />
+      <div className="flex flex-col">
+        <figcaption className="text-sm font-bold text-primary-900">{name}</figcaption>
+        <p className="text-xs font-semibold text-accent-600">{role}</p>
+      </div>
+    </div>
+    <blockquote className="mt-2 text-sm leading-relaxed text-slate-700 font-medium">"{text}"</blockquote>
+  </div>
+);
 
 export default function ReviewsSection() {
   const avgRating = 5.0;
@@ -106,10 +118,20 @@ export default function ReviewsSection() {
           </p>
         </motion.div>
 
-        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] h-[700px] overflow-hidden -mx-4 md:mx-0">
-          <TestimonialsColumn testimonials={firstColumn} duration={25} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={35} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={28} />
+        <div className="mt-14 relative flex w-full flex-col items-center justify-center overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+          <Marquee pauseOnHover className="[--duration:40s]">
+            {firstRow.map((review, i) => (
+              <ReviewCard key={i} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:45s] mt-4">
+            {secondRow.map((review, i) => (
+              <ReviewCard key={i} {...review} />
+            ))}
+          </Marquee>
+          
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-surface-soft dark:from-background"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-surface-soft dark:from-background"></div>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useContactModal } from '@/components/ContactModal';
 import { useInView } from '@/hooks/useInView';
+import { BorderBeam } from '@/components/magic-ui/border-beam';
 
 const PACKETS = {
   base:      { name: 'Базовый',   price: 80000,  room: '4-местное', icon: '🏠' },
@@ -194,6 +195,7 @@ export default function CalculatorSection() {
             {/* Right side — Total Result Card */}
             <div className="order-1 lg:order-2 h-auto lg:h-[100%]">
               <div className="h-full bg-primary-900 rounded-[2rem] p-8 md:p-10 flex flex-col justify-between relative overflow-hidden shadow-[0_20px_40px_-15px_rgba(30,58,138,0.4)]">
+                <BorderBeam duration={12} size={350} colorFrom="#38bdf8" colorTo="#2dd4bf" />
                 {/* Decorative background glow inside the dark card */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/20 rounded-full blur-[80px]" />
                 
