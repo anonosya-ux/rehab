@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useParallax } from '@/hooks/useParallax';
+import { Particles } from '@/components/magic-ui/particles';
 
 /**
  * ParallaxBackground — multi-layer floating ambient background for Light Medical Theme.
@@ -8,10 +10,20 @@ export default function ParallaxBackground() {
   const layer2 = useParallax(0.12);
   const layer4 = useParallax(0.08);
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-surface-soft">
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-primary-50 to-white opacity-80" />
+      
+      {/* Magic UI Interactive Particles */}
+      <div className="absolute inset-0 opacity-[0.25]">
+        {mounted && <Particles color="#2DD4BF" quantity={40} ease={60} staticity={40} className="w-full h-full" />}
+      </div>
 
       {/* Layer 1: Ambient soft organic glow */}
       <div style={layer1.style}>
