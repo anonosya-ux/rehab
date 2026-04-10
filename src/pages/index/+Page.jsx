@@ -1,4 +1,5 @@
 import HeroSection from '@/components/HeroSection'
+import TrustStatsSection from '@/components/TrustStatsSection'
 import StagesSection from '@/components/StagesSection'
 import PricingSection from '@/components/PricingSection'
 import CalculatorSection from '@/components/CalculatorSection'
@@ -29,6 +30,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <TrustStatsSection />
       <StagesSection />
       <PricingSection />
       <CalculatorSection />
