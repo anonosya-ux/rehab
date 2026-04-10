@@ -24,21 +24,37 @@ export default function HeroSection() {
   })
   
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
-  const yContent = useTransform(smoothProgress, [0, 1], ['0%', '30%'])
-  const opacityContent = useTransform(smoothProgress, [0, 0.6], [1, 0])
-  const scaleContent = useTransform(smoothProgress, [0, 1], [1, 0.95])
+  // Aggressive parallax effects for 'One Moscow' immersion level
+  const yContent = useTransform(smoothProgress, [0, 1], ['0%', '60%'])
+  const opacityContent = useTransform(smoothProgress, [0, 0.4], [1, 0])
+  const scaleContent = useTransform(smoothProgress, [0, 1], [1, 0.9])
+  
+  // Background Parallax
+  const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.2])
+  const bgY = useTransform(smoothProgress, [0, 1], ['0%', '15%'])
 
   return (
     <section 
       ref={ref}
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-primary-900/80 backdrop-blur-sm border-b border-white/10 pb-16 pt-20"
+      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-primary-900 pb-16 pt-20"
     >
+      {/* Deep Parallax Background Image */}
+      <motion.div 
+        style={{ scale: bgScale, y: bgY }}
+        className="absolute inset-0 z-0"
+      >
+        <img 
+          src="/images/presentation-07.png" 
+          alt="Клиника Цель" 
+          className="w-full h-full object-cover object-center opacity-80 mix-blend-luminosity" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-primary-900/80 to-primary-900/40 mix-blend-multiply" />
+      </motion.div>
+
       {/* Background Particle Layer */}
-      <ParticleTextEffect />
-      
-      {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-900 via-primary-900/60 to-transparent pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-primary-900/40 pointer-events-none z-0 mix-blend-multiply" />
+      <div className="absolute inset-0 z-[1] mix-blend-screen opacity-100">
+        <ParticleTextEffect />
+      </div>
 
       <motion.div 
         style={{ y: yContent, opacity: opacityContent, scale: scaleContent }}
