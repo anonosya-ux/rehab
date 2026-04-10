@@ -44,7 +44,7 @@ export default function HomePage() {
         id="boslab-teaser"
       >
         <div className="container-main max-w-6xl">
-          <div className="relative overflow-hidden rounded-[3rem] bg-white/40 backdrop-blur-3xl border border-white/60 p-8 md:p-16 lg:p-20 shadow-[0_20px_80px_-15px_rgba(30,58,138,0.1)]">
+          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-white/40 backdrop-blur-3xl border border-white/60 p-5 sm:p-8 md:p-16 lg:p-20 shadow-[0_20px_80px_-15px_rgba(30,58,138,0.1)]">
             {/* Liquid Glows */}
             <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-primary-400/20 rounded-full blur-[100px]" />
             <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] bg-accent-400/20 rounded-full blur-[80px]" />
@@ -95,7 +95,9 @@ export default function HomePage() {
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/30 rounded-full blur-[80px]" />
                   
                   <div className="text-center relative z-10 px-8">
-                    <div className="text-8xl mb-8 group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl">🧠</div>
+                    <div className="mb-8">
+                      <img src="/images/glass/boslab.png" alt="BOSlab Brain" loading="lazy" className="w-48 h-48 object-contain mx-auto group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl mix-blend-screen" />
+                    </div>
                     <div className="text-2xl font-display font-black text-white mb-2">Нейробиоуправление</div>
                     <div className="text-base text-primary-200/80 font-medium tracking-wide">Альфа & Бета ритмы ЭЭГ</div>
                   </div>
@@ -126,12 +128,12 @@ export default function HomePage() {
             {/* Center Card */}
             <motion.div 
               whileHover={{ y: -10 }}
-              className="p-10 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden group"
+              className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 text-white flex items-center justify-center shadow-lg shadow-accent-500/30">
-                  <span className="text-3xl">🌲</span>
+                <div className="w-16 h-16 rounded-2xl bg-[#08152e] text-white flex items-center justify-center shadow-lg">
+                  <img src="/images/glass/clinic.png" alt="Реабилитационный центр" loading="lazy" className="w-12 h-12 object-contain mix-blend-screen opacity-90" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-display text-primary-900">Реабилитационный центр</h3>
@@ -150,12 +152,12 @@ export default function HomePage() {
             {/* Office Card */}
             <motion.div 
               whileHover={{ y: -10 }}
-              className="p-10 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden group"
+              className="p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-800 to-primary-900 text-white flex items-center justify-center shadow-lg shadow-primary-900/30">
-                  <span className="text-3xl">🏢</span>
+                <div className="w-16 h-16 rounded-2xl bg-[#08152e] text-white flex items-center justify-center shadow-lg">
+                  <img src="/images/glass/office.png" alt="Офис в Москве" loading="lazy" className="w-12 h-12 object-contain mix-blend-screen opacity-90" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-display text-primary-900">Офис в Москве</h3>
@@ -184,7 +186,7 @@ export default function HomePage() {
         id="final-cta"
       >
         <div className="container-main">
-          <div className="relative overflow-hidden rounded-[3rem] p-10 md:p-16 lg:p-24 bg-primary-900 text-center shadow-[0_30px_100px_-20px_rgba(30,58,138,0.5)]">
+          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-10 md:p-16 lg:p-24 bg-primary-900 text-center shadow-[0_30px_100px_-20px_rgba(30,58,138,0.5)]">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-500/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/20 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
@@ -205,7 +207,7 @@ export default function HomePage() {
                   onClick={() => setOpen(true)}
                   className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-white text-primary-900 font-black text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
                 >
-                  Записаться к врачу
+                  Забронировать место
                 </button>
                 <a
                   href="tel:+74954141113"

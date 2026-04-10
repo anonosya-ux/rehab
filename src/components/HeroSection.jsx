@@ -87,14 +87,14 @@ export default function HeroSection() {
           >
             <button
               onClick={() => setOpen?.(true)}
-              className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-accent-600 text-white font-bold text-lg hover:bg-accent-700 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(220,38,38,0.4)]"
+              className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-2xl bg-accent-600 text-white font-bold text-lg hover:bg-accent-700 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(220,38,38,0.4)]"
             >
-              Получить консультацию
+              Забронировать место
             </button>
             
             <a
               href="tel:+74954141113"
-              className="w-full sm:w-auto px-10 py-5 rounded-2xl text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 backdrop-blur-sm"
+              className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 backdrop-blur-sm"
             >
               Узнать больше
             </a>
@@ -108,7 +108,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="w-full mt-16 md:mt-24 lg:w-[130%] max-w-[1200px]"
         >
-          <div className="bg-surface-soft/95 backdrop-blur-xl rounded-3xl p-6 md:p-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-6 md:gap-8 shadow-2xl border border-white/40">
+          <div className="bg-surface-soft/95 backdrop-blur-xl rounded-3xl p-4 sm:p-6 md:p-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-6 md:gap-8 shadow-2xl border border-white/40">
             {TRUST_STATS.map((stat, i) => (
               <div key={i} className="flex-1 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 text-center sm:text-left">
                 <div className="w-14 h-14 rounded-2xl bg-primary-100 text-primary-800 flex items-center justify-center shrink-0 shadow-inner">
