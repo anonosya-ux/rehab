@@ -126,7 +126,7 @@ class Particle {
   }
 }
 
-const DEFAULT_WORDS = ["LOGO", "АНОНИМНО", "БЕЗОПАСНО", "ЦЕЛЬ", "РЕАБИЛИТАЦИЯ"];
+const DEFAULT_WORDS = ["450+ СПАСЕНО", "10+ ЛЕТ ОПЫТА", "АНОНИМНО", "БЕЗ БОЛИ"];
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
   const canvasRef = useRef(null);
@@ -216,10 +216,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
           b: particle.startColor.b + (particle.targetColor.b - particle.startColor.b) * particle.colorWeight,
         };
         particle.targetColor = newColor;
-        // Make particles a bit larger when forming the logo
-        if (words[wordIndexRef.current] === "LOGO") {
-          particle.particleSize = Math.random() * 3 + 2;
-        }
+        particle.particleSize = Math.random() * 2.5 + 1.5;
 
         particle.colorWeight = 0;
         particle.target.x = x;
@@ -237,37 +234,19 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     offscreenCanvas.height = canvas.height;
     const offscreenCtx = offscreenCanvas.getContext("2d");
 
-    const isDesktop = window.innerWidth > 1024;
-    const centerX = isDesktop ? offscreenCanvas.width * 0.75 : offscreenCanvas.width / 2;
+    const centerX = offscreenCanvas.width / 2;
     const centerY = offscreenCanvas.height / 2;
 
-    if (word === "LOGO") {
-       offscreenCtx.lineWidth = 15 * window.devicePixelRatio;
-       offscreenCtx.strokeStyle = "white";
-       
-       offscreenCtx.beginPath();
-       offscreenCtx.arc(centerX, centerY, 80 * window.devicePixelRatio, 0, Math.PI * 2);
-       offscreenCtx.stroke();
-       
-       offscreenCtx.beginPath();
-       offscreenCtx.arc(centerX, centerY, 30 * window.devicePixelRatio, 0, Math.PI * 2);
-       offscreenCtx.stroke();
-       
-       offscreenCtx.beginPath();
-       offscreenCtx.arc(centerX, centerY, 8 * window.devicePixelRatio, 0, Math.PI * 2);
-       offscreenCtx.fillStyle = "white";
-       offscreenCtx.fill();
-       
-       processImageData(offscreenCtx, canvas);
-    } else {
-       offscreenCtx.fillStyle = "white";
-       const fontSize = Math.min(100 * window.devicePixelRatio, canvas.width / 12);
-       offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
-       offscreenCtx.textAlign = "center";
-       offscreenCtx.textBaseline = "middle";
-       offscreenCtx.fillText(word, centerX, centerY);
-       processImageData(offscreenCtx, canvas);
-    }
+    offscreenCtx.fillStyle = "white";
+    // Scale font size based on word length to ensure it fits the screen
+    let baseSize = 100;
+    if (word.length > 10) baseSize = 80;
+    const fontSize = Math.min(baseSize * window.devicePixelRatio, canvas.width / (word.length * 0.6));
+    offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
+    offscreenCtx.textAlign = "center";
+    offscreenCtx.textBaseline = "middle";
+    offscreenCtx.fillText(word, centerX, centerY);
+    processImageData(offscreenCtx, canvas);
   };
 
   const animate = () => {
