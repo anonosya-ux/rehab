@@ -60,7 +60,7 @@ export default function CalculatorSection() {
           </p>
         </div>
 
-        <div className="glass p-6 md:p-10 rounded-3xl border border-white/10">
+        <div className="glass-heavy p-6 md:p-10 rounded-3xl border-transparent">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             
             {/* Left side — controls */}
@@ -78,8 +78,8 @@ export default function CalculatorSection() {
                       onClick={() => setStage(s.id)}
                       className={`py-3 px-3 rounded-xl text-sm font-medium transition-all duration-300 border ${
                         stage === s.id 
-                          ? 'border-accent-400/50 bg-accent-500/10 text-accent-300 shadow-[0_0_15px_rgba(255,100,50,0.1)]' 
-                          : 'border-white/10 text-text-secondary hover:border-white/20 hover:bg-white/5'
+                          ? 'border-primary-400 bg-primary-50 text-primary-800 shadow-[0_4px_14px_0_rgba(59,130,246,0.1)]' 
+                          : 'border-surface-dark bg-surface-light text-text-secondary hover:border-primary-300 hover:bg-surface-muted'
                       }`}
                     >
                       <div className="font-semibold">{s.label}</div>
@@ -101,12 +101,12 @@ export default function CalculatorSection() {
                       onClick={() => setPacket(id)}
                       className={`p-4 rounded-xl text-left transition-all duration-300 border ${
                         packet === id 
-                          ? 'border-accent-400/40 bg-accent-500/10 shadow-[0_0_20px_rgba(255,100,50,0.08)]' 
-                          : 'border-white/10 bg-white/[0.03] hover:border-white/20'
+                          ? 'border-primary-400 bg-primary-50 shadow-[0_4px_14px_0_rgba(59,130,246,0.15)]' 
+                          : 'border-surface-dark bg-surface-light hover:border-primary-300 hover:bg-surface-muted'
                       }`}
                     >
                       <div className="text-xl mb-1">{p.icon}</div>
-                      <div className={`text-sm font-semibold ${packet === id ? 'text-accent-300' : 'text-text-primary'}`}>{p.name}</div>
+                      <div className={`text-sm font-semibold ${packet === id ? 'text-primary-800' : 'text-text-primary'}`}>{p.name}</div>
                       <div className="text-[10px] text-text-muted mt-0.5">{formatPrice(p.price)}/мес</div>
                       <div className="text-[10px] text-text-muted">{p.room}</div>
                     </button>
@@ -128,7 +128,7 @@ export default function CalculatorSection() {
                   max="12" 
                   value={duration} 
                   onChange={(e) => setDuration(parseInt(e.target.value))}
-                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-accent-500"
+                  className="w-full h-2 bg-primary-100 rounded-lg appearance-none cursor-pointer accent-primary-600"
                   aria-label="Длительность лечения в месяцах"
                 />
                 <div className="flex justify-between text-[10px] text-text-muted mt-2">
@@ -169,7 +169,7 @@ export default function CalculatorSection() {
                 </button>
                 <a 
                   href="tel:+74954141113"
-                  className="w-full py-3 glass-light text-text-primary font-medium rounded-xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
+                  className="w-full py-3 glass text-text-primary font-medium rounded-xl hover:bg-surface-muted transition-all duration-300 flex items-center justify-center gap-2 text-sm border-surface-dark"
                 >
                   📞 Позвонить
                 </a>

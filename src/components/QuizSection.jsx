@@ -94,8 +94,8 @@ function getRecommendation(answers) {
     duration: '2-4 месяца',
     desc: 'Базовая программа реабилитации. Подходит при начальных стадиях и высокой мотивации пациента.',
     features: ['4-местное проживание', 'BOSlab 1-2 раза/мес', 'Психолог 2-4 р/мес', 'Групповая терапия'],
-    color: 'from-white/10 to-white/5',
-    border: 'border-white/20',
+    color: 'from-surface-muted to-surface-light',
+    border: 'border-surface-dark',
   };
 }
 
@@ -158,7 +158,7 @@ export default function QuizSection() {
         </div>
 
         {/* Quiz Card */}
-        <div className="glass p-6 md:p-10 rounded-3xl border border-white/10">
+        <div className="glass-heavy p-6 md:p-10 rounded-3xl border-transparent">
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-2">
@@ -167,7 +167,7 @@ export default function QuizSection() {
               </span>
               <span className="text-xs text-accent-400 font-medium tabular-nums">{Math.round(progress)}%</span>
             </div>
-            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-primary-100 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-gradient-to-r from-accent-500 to-accent-400 rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
@@ -194,13 +194,13 @@ export default function QuizSection() {
                       onClick={() => handleAnswer(QUESTIONS[currentStep].id, option)}
                       className={`p-4 rounded-xl text-left transition-all duration-300 border group ${
                         isSelected
-                          ? 'border-accent-400/40 bg-accent-500/10 scale-[0.98]'
-                          : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]'
+                          ? 'border-primary-400 bg-primary-50 scale-[0.98] shadow-[0_4px_14px_0_rgba(59,130,246,0.1)]'
+                          : 'border-surface-dark bg-surface-light hover:border-primary-300 hover:bg-surface-muted'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-2xl group-hover:scale-110 transition-transform duration-200">{option.icon}</span>
-                        <span className={`text-sm font-medium ${isSelected ? 'text-accent-300' : 'text-text-primary'}`}>
+                        <span className={`text-sm font-medium ${isSelected ? 'text-primary-800' : 'text-text-primary'}`}>
                           {option.label}
                         </span>
                       </div>
@@ -227,7 +227,7 @@ export default function QuizSection() {
             <div className="animate-fadeIn">
               <div className={`p-6 rounded-2xl bg-gradient-to-br ${recommendation.color} border ${recommendation.border} mb-6`}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-2xl">
+                  <div className="w-12 h-12 rounded-full bg-primary-100 shadow-sm border border-primary-200/50 flex items-center justify-center text-2xl">
                     🎯
                   </div>
                   <div>
@@ -265,13 +265,13 @@ export default function QuizSection() {
                 <div className="flex gap-3">
                   <a 
                     href="tel:+74954141113"
-                    className="flex-1 py-3 glass-light text-text-primary font-medium rounded-xl hover:bg-white/10 transition-all duration-300 text-center text-sm"
+                    className="flex-1 py-3 glass text-text-primary font-medium rounded-xl hover:bg-surface-muted border-surface-dark transition-all duration-300 text-center text-sm"
                   >
                     📞 Позвонить
                   </a>
                   <button 
                     onClick={handleReset}
-                    className="flex-1 py-3 glass-light text-text-secondary font-medium rounded-xl hover:bg-white/10 transition-all duration-300 text-sm"
+                    className="flex-1 py-3 glass text-text-secondary font-medium rounded-xl hover:bg-surface-muted border-surface-dark transition-all duration-300 text-sm"
                   >
                     🔄 Пройти заново
                   </button>
