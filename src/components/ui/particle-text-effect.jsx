@@ -162,11 +162,12 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     const imageData = offscreenCtx.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
 
-    // Dark Theme Compatible Colors for Medical
+    // Boost contrast with brighter, more visible glowing colors for the particles
     const themeColors = [
-      { r: 255, g: 255, b: 255 }, // White
-      { r: 147, g: 197, b: 253 }, // Light blue (primary-300)
-      { r: 239, g: 68, b: 68 }, // Accent Red
+      { r: 255, g: 255, b: 255 }, // Pure White
+      { r: 219, g: 234, b: 254 }, // Bright blue-100
+      { r: 191, g: 219, b: 254 }, // Bright blue-200
+      { r: 252, g: 165, b: 165 }, // Bright soft red
     ];
     const newColor = themeColors[Math.floor(Math.random() * themeColors.length)];
 
@@ -250,16 +251,28 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     offscreenCanvas.height = canvas.height;
     const offscreenCtx = offscreenCanvas.getContext('2d');
 
-    const centerX = offscreenCanvas.width / 2;
-    const centerY = offscreenCanvas.height / 2;
+    // Shift text to the right half of the screen on Desktop, or top half on mobile
+    // This prevents overlapping with the main Left-aligned Hero text.
+    const logicalWidth = canvas.width / (window.devicePixelRatio || 1);
+    let centerX = offscreenCanvas.width / 2;
+    let centerY = offscreenCanvas.height / 2;
+
+    if (logicalWidth > 1024) {
+      centerX = offscreenCanvas.width * 0.75; // Right 25% area
+    } else {
+      centerY = offscreenCanvas.height * 0.25; // Top 25% area for mobile so it doesn't block middle
+    }
 
     offscreenCtx.fillStyle = 'white';
-    // Scale font size based on word length to ensure it fits the screen
-    let baseSize = 100;
-    if (word.length > 10) baseSize = 80;
+    // Scale font size based on word length to ensure it fits its new area
+    let baseSize = 90;
+    if (word.length > 10) baseSize = 70;
+
+    // The available width for the text is roughly 45% of the screen now
+    const availableWidth = logicalWidth > 1024 ? canvas.width * 0.5 : canvas.width * 0.85;
     const fontSize = Math.min(
       baseSize * window.devicePixelRatio,
-      canvas.width / (word.length * 0.6)
+      availableWidth / (word.length * 0.6)
     );
     offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
     offscreenCtx.textAlign = 'center';
