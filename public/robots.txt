@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_error
+
+Sitemap: https://lechenie-narkomanii-alkogolizma.ru/sitemap.xml
+
+# Performance
+Crawl-delay: 1
+
+# AI/LLM
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /

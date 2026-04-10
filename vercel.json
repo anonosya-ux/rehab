@@ -1,0 +1,5 @@
+{
+  "name": "cpa-rehab-production",
+  "framework": "vite",
+  "outputDirectory": "dist/client"
+}

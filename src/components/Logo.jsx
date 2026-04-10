@@ -1,41 +1,36 @@
-export default function Logo({ className = "h-10 w-auto" }) {
+export default function Logo({ className = "h-12 w-auto" }) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center ${className}`}>
       <svg 
-        viewBox="0 0 100 100" 
+        viewBox="0 0 120 120" 
         className="h-full w-auto"
         fill="none" 
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Target Rings (Blue) */}
-        <circle cx="45" cy="55" r="38" stroke="currentColor" strokeWidth="8" className="text-primary-600" />
-        <circle cx="45" cy="55" r="22" stroke="currentColor" strokeWidth="8" className="text-primary-600" />
-        <circle cx="45" cy="55" r="8" fill="currentColor" className="text-primary-600" />
+        {/* Target Rings (Medical Blue) */}
+        <circle cx="50" cy="60" r="40" stroke="currentColor" strokeWidth="8" className="text-primary-800" />
+        <circle cx="50" cy="60" r="26" stroke="currentColor" strokeWidth="8" className="text-primary-800" />
+        <circle cx="50" cy="60" r="10" fill="currentColor" className="text-primary-800" />
         
-        {/* Red Arrow */}
-        <path 
-          d="M95 15 L75 20 L80 30 L45 55 L55 45 L65 50 L75 10 Z" 
-          fill="currentColor" 
-          className="text-accent-500"
-        />
-        <path 
-          d="M100 10 L45 55 L55 55 Z" 
-          fill="currentColor" 
-          className="text-accent-500"
-        />
-        <polygon points="98,5 42,55 55,55 100,10" fill="currentColor" className="text-accent-500" />
-        
-        {/* Actually, a cleaner Arrow pointing to center */}
-        <g className="text-accent-500" fill="currentColor">
-          <polygon points="90,10 65,15 75,25 45,50 50,45 60,35 75,5 98,2" />
-          <path d="M42 58 L95 12 L85 8 L40 50 Z" />
-          <polygon points="95,10 75,25 90,30" />
+        {/* The Red Arrow pointing to the center */}
+        <g className="text-accent-600" fill="currentColor">
+          {/* Arrow Head (triangle) reaching the center */}
+          <polygon points="50,60 48,45 65,58" />
+          {/* Arrow Stem from top right */}
+          <polygon points="55,52 105,20 115,25 60,60" />
         </g>
+        
+        {/* Text "ЦЕЛЬ" sitting on the arrow stem (angled, color: Blue) */}
+        <text 
+          x="65" 
+          y="38" 
+          transform="rotate(-33 65 38)" 
+          fill="currentColor" 
+          className="text-primary-800 font-display font-black text-[18px] tracking-wide"
+        >
+          ЦЕЛЬ
+        </text>
       </svg>
-      <div className="flex flex-col">
-        <span className="text-xl font-display font-bold leading-none tracking-wide text-primary-600 group-hover:text-primary-500 transition-colors">ЦЕЛЬ</span>
-        <span className="text-[0.65rem] tracking-[0.2em] font-medium text-accent-500 uppercase leading-tight mt-0.5">ЦПА</span>
-      </div>
     </div>
   );
 }

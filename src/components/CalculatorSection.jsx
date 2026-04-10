@@ -1,97 +1,126 @@
 import { useState, useEffect } from 'react';
+import { useContactModal } from '@/components/ContactModal';
+import { useInView } from '@/hooks/useInView';
 
-const CalculatorSection = () => {
+const PACKETS = {
+  base:      { name: 'Базовый',   price: 80000,  room: '4-местное', icon: '🏠' },
+  standard:  { name: 'Стандарт+', price: 150000, room: '3-местное', icon: '⭐' },
+  intensive: { name: 'Интенсив',  price: 250000, room: '2-местное', icon: '🔥' },
+  vip:       { name: 'V.I.P.',    price: 420000, room: '1-местное', icon: '👑' },
+};
+
+const STAGES = [
+  { id: 1, label: 'Лёгкая', mult: 1.0, desc: 'Начальная стадия' },
+  { id: 2, label: 'Средняя', mult: 1.2, desc: 'Сформированная зависимость' },
+  { id: 3, label: 'Тяжёлая', mult: 1.5, desc: 'Хроническая стадия' },
+];
+
+const formatPrice = (price) =>
+  new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(price);
+
+export default function CalculatorSection() {
   const [stage, setStage] = useState(1);
-  const [packet, setPacket] = useState('base');
+  const [packet, setPacket] = useState('standard');
   const [duration, setDuration] = useState(3);
   const [totalCost, setTotalCost] = useState(0);
-
-  const packetRates = {
-    base: 80000,
-    intensive: 150000,
-    vip: 500000
-  };
+  const { setOpen } = useContactModal();
+  const [sectionRef, sectionInView] = useInView({ threshold: 0.1 });
 
   useEffect(() => {
-    let cost = packetRates[packet] * duration;
-    // Stage multipliers
-    if (stage === 2) cost *= 1.2;
-    if (stage === 3) cost *= 1.5;
-    
-    setTotalCost(cost);
+    const base = PACKETS[packet].price;
+    const mult = STAGES.find(s => s.id === stage)?.mult || 1;
+    setTotalCost(base * duration * mult);
   }, [stage, packet, duration]);
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(price);
-  };
+  // Savings calculation for motivation
+  const savings = packet === 'vip' ? 0 : 
+    Math.round((PACKETS.vip.price * duration * STAGES.find(s => s.id === stage).mult - totalCost) / 1000) * 1000;
 
   return (
-    <section className="py-24 relative z-10 bg-background/50">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section 
+      ref={sectionRef}
+      className="section-padding relative z-10" 
+      id="calculator-section"
+      style={{
+        opacity: sectionInView ? 1 : 0,
+        transform: sectionInView ? 'translateY(0)' : 'translateY(40px)',
+        transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+      }}
+    >
+      <div className="container-main max-w-5xl">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-playfair font-semibold mb-6 text-white drop-shadow-md">
-            Калькулятор <span className="text-primary italic">стоимости</span>
+          <span className="inline-block text-xs text-accent-400 uppercase tracking-widest mb-3 font-medium">Прозрачная стоимость</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Калькулятор <span className="gradient-text">стоимости</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Рассчитайте примерную стоимость курса реабилитации исходя из индивидуальных параметров. 
-            Точная сумма определяется врачом после первичной консультации.
+          <p className="text-text-secondary max-w-2xl mx-auto">
+            Рассчитайте примерную стоимость курса реабилитации. 
+            Точная сумма определяется врачом после бесплатной консультации.
           </p>
         </div>
 
-        <div className="glass-card p-8 md:p-12 rounded-3xl border border-white/10 shadow-[0_0_40px_rgba(45,212,191,0.05)]">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="glass p-6 md:p-10 rounded-3xl border border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             
-            {/* Parameters Selection */}
-            <div className="lg:col-span-2 space-y-10">
+            {/* Left side — controls */}
+            <div className="lg:col-span-2 space-y-8">
               
-              {/* Stage Selection */}
+              {/* Stage */}
               <div>
-                <label className="block text-white/80 text-sm uppercase tracking-wider font-semibold mb-4">
+                <label className="block text-text-secondary text-xs uppercase tracking-widest font-semibold mb-3">
                   Стадия зависимости
                 </label>
-                <div className="flex bg-white/5 p-1 rounded-xl glass-panel">
-                  {['Легкая', 'Средняя', 'Тяжелая'].map((s, idx) => (
+                <div className="grid grid-cols-3 gap-2">
+                  {STAGES.map(s => (
                     <button
-                      key={idx}
-                      onClick={() => setStage(idx + 1)}
-                      className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 ${stage === idx + 1 ? 'bg-primary text-background shadow-lg' : 'text-white/60 hover:text-white'}`}
+                      key={s.id}
+                      onClick={() => setStage(s.id)}
+                      className={`py-3 px-3 rounded-xl text-sm font-medium transition-all duration-300 border ${
+                        stage === s.id 
+                          ? 'border-accent-400/50 bg-accent-500/10 text-accent-300 shadow-[0_0_15px_rgba(255,100,50,0.1)]' 
+                          : 'border-white/10 text-text-secondary hover:border-white/20 hover:bg-white/5'
+                      }`}
                     >
-                      {s}
+                      <div className="font-semibold">{s.label}</div>
+                      <div className="text-[10px] text-text-muted mt-0.5">{s.desc}</div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Packet Selection */}
+              {/* Packet */}
               <div>
-                <label className="block text-white/80 text-sm uppercase tracking-wider font-semibold mb-4">
+                <label className="block text-text-secondary text-xs uppercase tracking-widest font-semibold mb-3">
                   Пакет услуг
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {[
-                    { id: 'base', name: 'Базовый', desc: 'В Жуково' },
-                    { id: 'intensive', name: 'Интенсив', desc: 'В Москве' },
-                    { id: 'vip', name: 'VIP', desc: 'Спец условия' }
-                  ].map((p) => (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {Object.entries(PACKETS).map(([id, p]) => (
                     <button
-                      key={p.id}
-                      onClick={() => setPacket(p.id)}
-                      className={`p-4 rounded-xl text-left transition-all duration-300 border ${packet === p.id ? 'border-primary bg-primary/10 shadow-[0_0_15px_rgba(45,212,191,0.2)]' : 'border-white/10 bg-white/5 hover:border-white/20'}`}
+                      key={id}
+                      onClick={() => setPacket(id)}
+                      className={`p-4 rounded-xl text-left transition-all duration-300 border ${
+                        packet === id 
+                          ? 'border-accent-400/40 bg-accent-500/10 shadow-[0_0_20px_rgba(255,100,50,0.08)]' 
+                          : 'border-white/10 bg-white/[0.03] hover:border-white/20'
+                      }`}
                     >
-                      <div className={`font-semibold mb-1 ${packet === p.id ? 'text-primary' : 'text-white'}`}>{p.name}</div>
-                      <div className="text-xs text-white/50">{p.desc}</div>
+                      <div className="text-xl mb-1">{p.icon}</div>
+                      <div className={`text-sm font-semibold ${packet === id ? 'text-accent-300' : 'text-text-primary'}`}>{p.name}</div>
+                      <div className="text-[10px] text-text-muted mt-0.5">{formatPrice(p.price)}/мес</div>
+                      <div className="text-[10px] text-text-muted">{p.room}</div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Duration Slider */}
+              {/* Duration slider */}
               <div>
-                <div className="flex justify-between items-center mb-4">
-                  <label className="text-white/80 text-sm uppercase tracking-wider font-semibold">
-                    Длительность (месяцев)
+                <div className="flex justify-between items-center mb-3">
+                  <label className="text-text-secondary text-xs uppercase tracking-widest font-semibold">
+                    Длительность
                   </label>
-                  <span className="text-primary font-bold text-lg">{duration} мес.</span>
+                  <span className="text-accent-400 font-bold text-lg tabular-nums">{duration} мес.</span>
                 </div>
                 <input 
                   type="range" 
@@ -99,35 +128,57 @@ const CalculatorSection = () => {
                   max="12" 
                   value={duration} 
                   onChange={(e) => setDuration(parseInt(e.target.value))}
-                  className="w-full accent-primary h-2 bg-white/10 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-accent-500"
+                  aria-label="Длительность лечения в месяцах"
                 />
-                <div className="flex justify-between text-xs text-white/40 mt-2">
-                  <span>1</span>
-                  <span>6</span>
-                  <span>12</span>
+                <div className="flex justify-between text-[10px] text-text-muted mt-2">
+                  <span>1 мес</span>
+                  <span>3 мес (мин.)</span>
+                  <span>6 мес (оптим.)</span>
+                  <span>12 мес</span>
                 </div>
               </div>
             </div>
 
-            {/* Total Display */}
-            <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col justify-between items-center text-center">
-              <div>
-                <h3 className="text-white/60 text-sm uppercase tracking-widest font-semibold mb-6">
+            {/* Right side — result */}
+            <div className="glass rounded-2xl p-6 flex flex-col justify-between">
+              <div className="text-center">
+                <h3 className="text-text-muted text-xs uppercase tracking-widest font-semibold mb-4">
                   Примерная стоимость
                 </h3>
-                <div className="text-4xl md:text-5xl font-playfair font-bold text-primary drop-shadow-md mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-accent-400 tabular-nums mb-1">
                   {formatPrice(totalCost)}
                 </div>
-                <div className="text-sm text-white/40 mt-4">
-                  Сумма не является публичной офертой и может быть скорректирована после диагностики.
+                <div className="text-xs text-text-muted">
+                  за {duration} мес. · {PACKETS[packet].name}
                 </div>
+                
+                {savings > 0 && (
+                  <div className="mt-4 px-3 py-2 rounded-lg bg-accent-500/5 border border-accent-400/10 text-xs text-accent-300">
+                    Экономия {formatPrice(savings)} vs VIP
+                  </div>
+                )}
               </div>
 
-              <div className="w-full mt-8">
-                <button className="w-full py-4 bg-primary text-background font-semibold rounded-full hover:shadow-[0_0_20px_rgba(45,212,191,0.5)] transition-all duration-300 hover:scale-[1.02]">
-                  Получить расчет стоимости
+              <div className="mt-6 space-y-3">
+                <button 
+                  onClick={() => setOpen(true)}
+                  className="w-full py-3.5 bg-gradient-to-r from-accent-500 to-accent-400 text-white font-semibold rounded-xl hover:shadow-glow transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  Получить точный расчёт
                 </button>
+                <a 
+                  href="tel:+74954141113"
+                  className="w-full py-3 glass-light text-text-primary font-medium rounded-xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
+                >
+                  📞 Позвонить
+                </a>
               </div>
+
+              <p className="text-[10px] text-text-muted text-center mt-4 leading-relaxed">
+                Не является публичной офертой. 
+                Точная стоимость определяется после диагностики.
+              </p>
             </div>
 
           </div>
@@ -135,6 +186,4 @@ const CalculatorSection = () => {
       </div>
     </section>
   );
-};
-
-export default CalculatorSection;
+}
