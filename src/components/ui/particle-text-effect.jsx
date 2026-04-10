@@ -293,9 +293,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
         canvas.width = window.innerWidth * dpr;
         canvas.height = window.innerHeight * dpr;
         
-        const ctx = canvas.getContext("2d");
-        ctx.scale(dpr, dpr);
-        
         nextWord(words[wordIndexRef.current], canvas);
     };
     

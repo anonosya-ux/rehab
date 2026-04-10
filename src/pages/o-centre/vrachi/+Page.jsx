@@ -7,6 +7,7 @@ const doctors = [
     role: 'Основатель и генеральный директор',
     degree: 'Клинический психолог',
     description: 'Психолог-психотерапевт. Координация работы центра и разработка стратегии реабилитации.',
+    image: '/images/team/1.jpg',
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const doctors = [
     role: 'Специалист по работе с родственниками',
     degree: 'Канд. мед. наук',
     description: 'Ст. научн. сотр. НМИЦ им. Сербского. Сопровождение созависимых, терапия психотравмы.',
+    image: '/images/team/2.jpg',
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const doctors = [
     role: 'Эксперт по научно-методической работе',
     degree: 'Канд. псих. наук',
     description: 'Доцент МГППУ. Разработка программ подготовки специалистов-аддиктологов.',
+    image: '/images/team/3.jpg',
   },
   {
     id: 4,
@@ -28,6 +31,7 @@ const doctors = [
     role: 'Амбулаторные программы',
     degree: 'Клинический психолог',
     description: 'Когнитивно-поведенческая терапия. Индивидуальная и групповая работа с химическими и поведенческими зависимостями.',
+    image: '/images/team/4.jpg',
   },
   {
     id: 5,
@@ -35,6 +39,7 @@ const doctors = [
     role: 'Отдел ресоциализации',
     degree: 'Клинический психолог',
     description: 'Руководитель отдела ресоциализации ЦПА «Цель». Разработка индивидуальных траекторий восстановления.',
+    image: '/images/team/5.jpg',
   },
   {
     id: 6,
@@ -42,6 +47,7 @@ const doctors = [
     role: 'Психотерапевт',
     degree: 'Нейропсихолог',
     description: 'Сертифицированный судебный эксперт-психолог, специалист по работе с РПП и созависимостью.',
+    image: '/images/team/6.jpg',
   },
   {
     id: 7,
@@ -49,6 +55,7 @@ const doctors = [
     role: 'Арт-терапевт',
     degree: 'Клинический психолог',
     description: 'Художник, скульптор, педагог по ИЗО. Индивидуальная и групповая терапия.',
+    image: '/images/team/7.jpg',
   },
   {
     id: 8,
@@ -56,6 +63,7 @@ const doctors = [
     role: 'Аддиктолог',
     degree: 'Психолог-консультант',
     description: 'Формирование мотивации к лечению, работа с травмами и буллингом.',
+    image: '/images/team/8.jpg',
   },
   {
     id: 9,
@@ -63,6 +71,7 @@ const doctors = [
     role: 'Аддиктолог',
     degree: 'Психолог-консультант',
     description: 'Специалист по работе с посттравматическим стрессовым расстройством (ПТСР).',
+    image: '/images/team/9.jpg',
   },
   {
     id: 10,
@@ -70,6 +79,7 @@ const doctors = [
     role: 'Терапия и мотивация',
     degree: 'Психолог-консультант',
     description: 'Распознавание семейных паттернов, профилактика срыва зависимых от ПАВ.',
+    image: '/images/team/10.jpg',
   }
 ];
 
@@ -119,9 +129,13 @@ function ProfileCard({ doctor }) {
       
       <div className="relative z-10 flex flex-col h-full">
         {/* Avatar Area */}
-        <div className="relative w-24 h-24 mb-6 rounded-full p-1 bg-gradient-to-tr from-accent-500/50 to-primary-500/50 overflow-hidden group-hover:from-accent-400 group-hover:to-primary-400 transition-all duration-300 mx-auto sm:mx-0">
-          <div className="w-full h-full bg-surface-darker rounded-full flex items-center justify-center text-3xl font-display font-bold text-white/80 group-hover:text-white transition-colors">
-            {doctor.name.charAt(0)}
+        <div className="relative w-24 h-24 mb-6 rounded-full p-[2px] bg-gradient-to-tr from-accent-500/50 to-primary-500/50 overflow-hidden group-hover:from-accent-400 group-hover:to-primary-400 transition-all duration-300 mx-auto sm:mx-0">
+          <div className="w-full h-full bg-surface-darker rounded-full flex items-center justify-center text-3xl font-display font-bold text-white/80 group-hover:text-white transition-colors overflow-hidden">
+            {doctor.image ? (
+              <img src={doctor.image} alt={doctor.name} className="w-full h-full object-cover" />
+            ) : (
+              doctor.name.charAt(0)
+            )}
           </div>
         </div>
 
