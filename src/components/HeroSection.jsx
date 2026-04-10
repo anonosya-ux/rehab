@@ -28,7 +28,7 @@ export default function HeroSection() {
   return (
     <section 
       ref={ref}
-      className="relative min-h-[100svh] bg-white overflow-hidden pt-24"
+      className="relative min-h-[100svh] overflow-hidden pt-24"
     >
       {/* Split Background Layer */}
       <div className="absolute inset-0 flex -z-10">
@@ -66,7 +66,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 whitespace-pre-wrap"
+            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 whitespace-pre-wrap"
           >
             Поможем вам или вашему близкому освободиться от <span className="text-white">зависимости</span>
           </motion.h1>
