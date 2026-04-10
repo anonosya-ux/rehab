@@ -8,25 +8,97 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lechenie-narkomanii-alkogolizma.ru/narkomaniya</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lechenie-narkomanii-alkogolizma.ru/alkogolizm</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lechenie-narkomanii-alkogolizma.ru/reabilitaciya</loc>
-    <lastmod>2026-04-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/licenzii</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/otzyvy</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/vrachi</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/bezopasnost</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/missiya-i-cennosti</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/podhod-k-lecheniyu</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/o-centre/usloviya-prebyvaniya</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/reabilitaciya/etapy</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/reabilitaciya/pakety</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/uslugi/lechenie-narkomanii</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/uslugi/lechenie-alkogolizma</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/uslugi/lechenie-igromanii</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/uslugi/detoksikaciya</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/uslugi/gruppovaya-terapiya</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/uslugi/ambulatornye-programmy</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -57,6 +129,24 @@
   </url>
   <url>
     <loc>https://lechenie-narkomanii-alkogolizma.ru/agreement</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/narkomaniya</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/alkogolizm</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lechenie-narkomanii-alkogolizma.ru/povedencheskie-zavisimosti</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
