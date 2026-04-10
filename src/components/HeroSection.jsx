@@ -38,10 +38,9 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-primary-900 via-primary-900/60 to-transparent pointer-events-none z-0" />
       <div className="absolute inset-0 bg-primary-900/40 pointer-events-none z-0 mix-blend-multiply" />
 
-      {/* MAIN CONTENT */}
       <motion.div 
         style={{ y: yContent, opacity: opacityContent, scale: scaleContent }}
-        className="container-main min-h-[100svh] relative z-10 pt-32 pb-32 flex flex-col justify-center items-start text-left"
+        className="container-main min-h-[100svh] relative z-10 pt-32 pb-24 flex flex-col justify-center items-start text-left"
       >
         <div className="max-w-3xl text-white relative">
           
@@ -102,12 +101,12 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Floating Trust Stats Bar */}
+        {/* Trust Stats Bar */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="absolute -bottom-8 lg:bottom-12 left-4 right-4 lg:left-0 lg:right-auto lg:w-[130%] max-w-[1200px]"
+          className="w-full mt-16 md:mt-24 lg:w-[130%] max-w-[1200px]"
         >
           <div className="bg-surface-soft/95 backdrop-blur-xl rounded-3xl p-6 md:p-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-6 md:gap-8 shadow-2xl border border-white/40">
             {TRUST_STATS.map((stat, i) => (
