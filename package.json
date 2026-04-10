@@ -6,7 +6,7 @@
   "description": "ЦПА «Цель» — Центр практической аддиктологии. Сайт реабилитационного центра.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vike prerender",
     "postbuild": "node scripts/generate-sitemap.js",
     "lint": "eslint .",
     "preview": "vite preview",
