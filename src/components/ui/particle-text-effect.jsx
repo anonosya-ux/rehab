@@ -237,39 +237,35 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     offscreenCanvas.height = canvas.height;
     const offscreenCtx = offscreenCanvas.getContext("2d");
 
-    const isDesktop = canvas.width > 1024;
-    const textX = isDesktop ? canvas.width * 0.75 : canvas.width / 2;
+    const isDesktop = window.innerWidth > 1024;
+    const centerX = isDesktop ? offscreenCanvas.width * 0.75 : offscreenCanvas.width / 2;
+    const centerY = offscreenCanvas.height / 2;
 
     if (word === "LOGO") {
-       const img = new Image();
-       const svgString = `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="65" r="32" stroke="white" stroke-width="12" fill="none" />
-          <circle cx="50" cy="65" r="16" stroke="white" stroke-width="10" fill="none" />
-          <circle cx="50" cy="65" r="5" fill="white" />
-          <polygon points="50,65 48,45 65,58" fill="white" />
-          <polygon points="55,52 105,20 115,25 60,65" fill="white" />
-          <text x="65" y="38" transform="rotate(-33 65 38)" fill="white" font-family="Arial, sans-serif" font-weight="900" font-size="16px">ЦЕЛЬ</text>
-       </svg>`;
-       const blob = new Blob([svgString], { type: 'image/svg+xml' });
-       const url = URL.createObjectURL(blob);
+       offscreenCtx.lineWidth = 15 * window.devicePixelRatio;
+       offscreenCtx.strokeStyle = "white";
        
-       img.onload = () => {
-          const logoSize = isDesktop ? Math.min(canvas.width * 0.4, 500) : Math.min(canvas.width * 0.7, 300);
-          const imgX = textX - logoSize / 2;
-          const imgY = canvas.height / 2 - logoSize / 2;
-          
-          offscreenCtx.drawImage(img, imgX, imgY, logoSize, logoSize);
-          URL.revokeObjectURL(url);
-          processImageData(offscreenCtx, canvas);
-       };
-       img.src = url;
+       offscreenCtx.beginPath();
+       offscreenCtx.arc(centerX, centerY, 80 * window.devicePixelRatio, 0, Math.PI * 2);
+       offscreenCtx.stroke();
+       
+       offscreenCtx.beginPath();
+       offscreenCtx.arc(centerX, centerY, 30 * window.devicePixelRatio, 0, Math.PI * 2);
+       offscreenCtx.stroke();
+       
+       offscreenCtx.beginPath();
+       offscreenCtx.arc(centerX, centerY, 8 * window.devicePixelRatio, 0, Math.PI * 2);
+       offscreenCtx.fillStyle = "white";
+       offscreenCtx.fill();
+       
+       processImageData(offscreenCtx, canvas);
     } else {
        offscreenCtx.fillStyle = "white";
-       const fontSize = Math.min(100, canvas.width / 12);
+       const fontSize = Math.min(100 * window.devicePixelRatio, canvas.width / 12);
        offscreenCtx.font = `900 ${fontSize}px "Inter", "Arial", sans-serif`;
        offscreenCtx.textAlign = "center";
        offscreenCtx.textBaseline = "middle";
-       offscreenCtx.fillText(word, textX, canvas.height / 2);
+       offscreenCtx.fillText(word, centerX, centerY);
        processImageData(offscreenCtx, canvas);
     }
   };
@@ -315,9 +311,13 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     if (!canvas) return;
 
     const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        // Re-calculate the word positions when resizing
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        
         nextWord(words[wordIndexRef.current], canvas);
     };
     
@@ -335,7 +335,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }) {
     <div className="absolute inset-0 z-0 overflow-hidden bg-primary-900 pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-60 mix-blend-screen"
+        style={{ width: '100%', height: '100%' }}
+        className="opacity-70 mix-blend-screen"
       />
     </div>
   );

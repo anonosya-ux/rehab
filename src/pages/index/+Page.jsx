@@ -9,6 +9,7 @@ import FAQSection from '@/components/FAQSection'
 import { useContactModal } from '@/components/ContactModal'
 import { useInView } from '@/hooks/useInView'
 import { motion } from 'framer-motion'
+import { Brain, TreePine, Building2 } from 'lucide-react'
 const HOME_FAQS = [
   { question: 'Гарантируете ли вы анонимность?', answer: 'Да, мы работаем строго анонимно. Данные пациентов не передаются в государственные структуры. Постановка на наркологический учёт не производится.' },
   { question: 'Сколько стоит лечение?', answer: 'Стоимость зависит от выбранного пакета: Базовый — от 80 000 ₽/мес, Стандарт+ — от 150 000 ₽/мес, Интенсив — от 250 000 ₽/мес, VIP — от 420 000 ₽/мес. Точная стоимость определяется после первичной консультации.' },
@@ -95,8 +96,11 @@ export default function HomePage() {
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent-500/30 rounded-full blur-[80px]" />
                   
                   <div className="text-center relative z-10 px-8">
-                    <div className="mb-8">
-                      <img src="/images/glass/boslab.png" alt="BOSlab Brain" loading="lazy" className="w-48 h-48 object-contain mx-auto group-hover:scale-110 transition-transform duration-500 drop-shadow-2xl mix-blend-screen" />
+                    <div className="mb-8 flex justify-center w-full">
+                      <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-white/5 border border-white/20 backdrop-blur-3xl shadow-[0_0_80px_rgba(255,255,255,0.1)] flex items-center justify-center group-hover:scale-110 transition-transform duration-500 relative">
+                        <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-20"></div>
+                        <Brain className="w-16 h-16 md:w-24 md:h-24 text-white opacity-90 drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]" strokeWidth={1} />
+                      </div>
                     </div>
                     <div className="text-2xl font-display font-black text-white mb-2">Нейробиоуправление</div>
                     <div className="text-base text-primary-200/80 font-medium tracking-wide">Альфа & Бета ритмы ЭЭГ</div>
@@ -132,8 +136,8 @@ export default function HomePage() {
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-[#08152e] text-white flex items-center justify-center shadow-lg">
-                  <img src="/images/glass/clinic.png" alt="Реабилитационный центр" loading="lazy" className="w-12 h-12 object-contain mix-blend-screen opacity-90" />
+                <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-3xl shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center relative overflow-hidden group-hover:bg-white/20 transition-colors">
+                  <TreePine className="w-8 h-8 text-text-primary drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" strokeWidth={1.5} />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-display text-primary-900">Реабилитационный центр</h3>
@@ -156,8 +160,8 @@ export default function HomePage() {
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-[#08152e] text-white flex items-center justify-center shadow-lg">
-                  <img src="/images/glass/office.png" alt="Офис в Москве" loading="lazy" className="w-12 h-12 object-contain mix-blend-screen opacity-90" />
+                <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-3xl shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center relative overflow-hidden group-hover:bg-white/20 transition-colors">
+                  <Building2 className="w-8 h-8 text-primary-600 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]" strokeWidth={1.5} />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-display text-primary-900">Офис в Москве</h3>

@@ -5,33 +5,9 @@ import Logo from './Logo';
 import { useContactModal } from '@/components/ContactModal';
 
 const MENU_ITEMS = [
-  {
-    label: 'Зависимости',
-    href: '#',
-    megaMenu: [
-      {
-        title: 'Наркомания',
-        href: '/narkomaniya',
-        links: [
-          { label: 'Мефедрон', href: '/narkomaniya/mefedron' },
-          { label: 'Соли', href: '/narkomaniya/soli' },
-          { label: 'Кокаин', href: '/narkomaniya/kokain' },
-          { label: 'Героин', href: '/narkomaniya/geroin' },
-        ],
-      },
-      {
-        title: 'Алкоголизм',
-        href: '/alkogolizm',
-        links: [
-          { label: 'Вывод из запоя', href: '/alkogolizm/vyvod-iz-zapoya' },
-          { label: 'Кодирование', href: '/alkogolizm/kodirovanie' },
-          { label: 'Женский алкоголизм', href: '/alkogolizm/zhenskiy' },
-          { label: 'Пивной алкоголизм', href: '/alkogolizm/pivnoy' },
-        ],
-      },
-    ],
-  },
-  { label: 'Реабилитация', href: '/reabilitaciya' },
+  { label: 'Наркомания', href: '/uslugi/lechenie-narkomanii' },
+  { label: 'Алкоголизм', href: '/uslugi/lechenie-alkogolizma' },
+  { label: 'Реабилитация', href: '/reabilitaciya/etapy' },
   { label: 'О центре', href: '/o-centre' },
   { label: 'Блог', href: '/blog' },
   { label: 'Контакты', href: '/kontakty' },
@@ -73,56 +49,17 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Главная навигация">
           {MENU_ITEMS.map((item, idx) => (
-            <div
-              key={item.label}
-              className="relative"
-              onMouseEnter={() => item.megaMenu ? setActiveMenu(idx) : setActiveMenu(null)}
-            >
+            <div key={item.label} className="relative">
               <a
                 href={item.href}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center gap-1 ${
-                  pathname.startsWith(item.href) && item.href !== '#'
+                className={`px-3 py-2 rounded-lg text-[15px] font-semibold transition-all duration-300 flex items-center gap-1 ${
+                  pathname.startsWith(item.href) && item.href !== '/'
                     ? 'text-primary-600 bg-primary-50'
                     : 'text-text-secondary hover:text-primary-800 hover:bg-surface-soft'
                 }`}
               >
                 {item.label}
-                {item.megaMenu && (
-                  <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${activeMenu === idx ? 'rotate-180 text-primary-600' : 'text-text-muted'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                )}
               </a>
-
-              {/* Mega Menu Dropdown */}
-              <AnimatePresence>
-                {item.megaMenu && activeMenu === idx && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[500px] bg-white rounded-2xl p-6 border border-surface-dark shadow-elevated flex gap-10"
-                  >
-                    {item.megaMenu.map((column) => (
-                      <div key={column.title} className="flex-1">
-                        <a href={column.href} className="text-base font-display text-primary-800 font-bold mb-3 block hover:text-primary-600 transition-colors border-b border-surface-dark pb-2">
-                          {column.title}
-                        </a>
-                        <ul className="space-y-2">
-                          {column.links.map(link => (
-                            <li key={link.href}>
-                              <a href={link.href} className="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors block">
-                                {link.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           ))}
         </nav>
@@ -181,22 +118,6 @@ export default function Header() {
                   >
                     {item.label}
                   </a>
-                  {item.megaMenu && (
-                    <div className="pl-6 py-2 border-l-2 border-primary-200 ml-4 mt-2 space-y-4">
-                      {item.megaMenu.map(col => (
-                        <div key={col.title}>
-                          <div className="text-primary-600 text-sm font-bold mb-2">{col.title}</div>
-                          <div className="space-y-2">
-                            {col.links.map(link => (
-                              <a key={link.href} href={link.href} className="block text-text-secondary text-sm font-medium hover:text-primary-800">
-                                {link.label}
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))}
               <div className="mt-6 pt-6 border-t border-surface-dark flex flex-col gap-4">
