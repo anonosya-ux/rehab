@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useContactModal } from '@/components/ContactModal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { ParticleTextEffect } from '@/components/ui/particle-text-effect'
+import { GooeyText } from '@/components/ui/gooey-text-morphing'
 
 const TRUST_STATS = [
   { value: 10, label: 'лет опыта', suffix: '+' },
@@ -73,10 +74,25 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-2xl text-primary-100 leading-relaxed mb-12 max-w-2xl font-light drop-shadow-md"
+            className="text-lg md:text-2xl text-primary-100 leading-relaxed mb-6 max-w-2xl font-light drop-shadow-md"
           >
             Комплексный подход к лечению независимости. Опытные специалисты, 100% анонимность и комфортные условия для начала новой жизни.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="mb-10 text-left"
+          >
+             <GooeyText 
+                texts={["Анонимно", "Профессионально", "Без боли", "Навсегда"]} 
+                morphTime={1.5}
+                cooldownTime={2.5}
+                textClassName="text-accent-400 font-display font-black text-3xl sm:text-4xl text-left left-0"
+                className="h-[60px] flex items-center justify-start ml-0 w-full"
+             />
+          </motion.div>
 
           {/* CTA Actions */}
           <motion.div

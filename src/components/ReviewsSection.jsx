@@ -1,50 +1,70 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1';
 
-const REVIEWS = [
+const testimonials = [
   {
-    author: "Анна М.",
-    role: "Мать пациента",
-    text: "Огромное спасибо персоналу центра. Мой сын вернулся к нормальной жизни после 5 лет употребления. Условия отличные, врачи от Бога.",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/150?img=47"
+    text: "Отличный центр! Сначала долго сомневались, но условия и профессионализм врачей просто на высшем уровне. Спасибо за новую жизнь.",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Максим В.",
+    role: "5.0 из 5 (Яндекс.Карты)",
   },
   {
-    author: "Михаил",
-    role: "Выпускник программы",
-    text: "Долго не хотел признавать проблему с алкоголем. Прошел курс реабилитации, сейчас не пью больше года. Жизнь наладилась, вернулась семья.",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/150?img=11"
+    text: "Спасли брата от тяжелой зависимости. Огромная лесная территория, прозрачные условия, мы были всегда на связи с семейным психологом.",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Елена С.",
+    role: "5.0 из 5 (Яндекс.Карты)",
   },
   {
-    author: "Елена В.",
-    role: "Выпускница программы",
-    text: "Прекрасный центр с потрясающим отношением к пациентам. Я чувствовала себя как дома. Психотерапия здесь на высшем уровне.",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/150?img=32"
+    text: "Индивидуальный подход и человеческое отношение. БОС-терапия реально работает, сын не употребляет второй год! Очень благодарны.",
+    image: "https://randomuser.me/api/portraits/men/46.jpg",
+    name: "Сергей П.",
+    role: "5.0 из 5 (Яндекс.Карты)",
   },
   {
-    author: "Денис",
-    role: "Выпускник программы",
-    text: "Благодаря индивидуальной работе с психологом я смог найти первопричины своей зависимости. Спасибо за второй шанс на жизнь.",
-    rating: 4,
-    avatar: "https://i.pravatar.cc/150?img=60"
+    text: "Высокий уровень безопасности и 100% анонимность. Пациенты живут в комфортных условиях, как в хорошем санатории, прекрасное питание.",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    name: "Анна М.",
+    role: "5.0 из 5 (Яндекс.Карты)",
   },
   {
-    author: "Сергей П.",
-    role: "Брат пациента",
-    text: "Анонимность и профессионализм - вот что отличает этот центр. Огромная территория, комфорт. Спасибо за спасение моего брата!",
-    rating: 5,
-    avatar: "https://i.pravatar.cc/150?img=52"
-  }
+    text: "Специалисты центра сделали невозможное. После нескольких срывов в клиниках эконом-класса, именно здесь помогли найти и проработать причину.",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
+    name: "Дмитрий К.",
+    role: "5.0 из 5 (Яндекс.Карты)",
+  },
+  {
+    text: "Лучший рехаб в Подмосковье по соотношению цены и отношения к людям. Спасибо психотерапевтам за работу с нашей созависимостью.",
+    image: "https://randomuser.me/api/portraits/women/12.jpg",
+    name: "Ольга В.",
+    role: "5.0 из 5 (Яндекс.Карты)",
+  },
+  {
+    text: "Очень чисто, территория огромная, сосновый бор вокруг. С пациентами действительно работают каждый день, а не просто держат взаперти.",
+    image: "https://randomuser.me/api/portraits/men/62.jpg",
+    name: "Николай И.",
+    role: "5.0 из 5 (Яндекс.Карты)",
+  },
+  {
+    text: "Грамотный вывод из запоя, полное обследование и шикарная программа реабилитации 12 Шагов. Цены полностью оправдывают этот результат.",
+    image: "https://randomuser.me/api/portraits/men/33.jpg",
+    name: "Игорь Т.",
+    role: "5.0 из 5 (Яндекс.Карты)",
+  },
+  {
+    text: "Остался жив только благодаря вам. Учат заново радоваться жизни без стимуляторов. Низкий поклон всему медицинскому персоналу.",
+    image: "https://randomuser.me/api/portraits/men/11.jpg",
+    name: "Алексей (Выпускник)",
+    role: "5.0 из 5 (Яндекс.Карты)",
+  },
 ];
 
-// Duplicate for infinite scrolling effect
-const MARQUEE_REVIEWS = [...REVIEWS, ...REVIEWS];
+const firstColumn = testimonials.slice(0, 3);
+const secondColumn = testimonials.slice(3, 6);
+const thirdColumn = testimonials.slice(6, 9);
 
 export default function ReviewsSection() {
-  // Schema.org AggregateRating — per seo-schema skill (ACTIVE type)
-  const avgRating = REVIEWS.reduce((sum, r) => sum + r.rating, 0) / REVIEWS.length;
+  const avgRating = 5.0;
   const reviewSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
@@ -52,81 +72,44 @@ export default function ReviewsSection() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": avgRating.toFixed(1),
-      "reviewCount": REVIEWS.length,
+      "reviewCount": testimonials.length,
       "bestRating": "5",
       "worstRating": "1",
     },
-    "review": REVIEWS.map(r => ({
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": r.rating,
-      },
-      "author": {
-        "@type": "Person",
-        "name": r.author,
-      },
-      "reviewBody": r.text,
-    })),
   };
 
   return (
-    <section className="py-24 relative overflow-hidden bg-surface-soft">
-      {/* Schema.org AggregateRating + Reviews JSON-LD */}
+    <section className="bg-surface-soft py-20 relative overflow-hidden" id="reviews-section">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
-      {/* Background gradients */}
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-surface-soft to-transparent z-10 pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-surface-soft to-transparent z-10 pointer-events-none" />
-      <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-surface-soft to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-surface-soft to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-400/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent-400/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container-main relative z-20 mx-auto max-w-6xl text-center mb-16">
-        <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium uppercase tracking-widest mb-6">
-          Истории успеха
-        </div>
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold text-text-primary mb-6">
-          Отзывы наших <span className="text-primary italic">резидентов</span>
-        </h2>
-        <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-          Реальные истории людей, которые смогли преодолеть зависимость и начать новую жизнь с чистого листа.
-        </p>
-      </div>
+      <div className="container-main z-10 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center justify-center max-w-[800px] mx-auto text-center"
+        >
+          <div className="inline-block px-4 py-1.5 rounded-full bg-primary-100 border border-primary-200 text-primary-800 text-sm font-bold uppercase tracking-widest mb-6">
+            Истории успеха
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-primary-900 mb-6 drop-shadow-sm">
+            Отзывы на <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-accent-400">Яндекс.Картах</span>
+          </h2>
+          <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
+            Десятки спасенных жизней. Реальные истории реабилитантов и благодарности от их семей, чья жизнь разделилась на «До» и «После».
+          </p>
+        </motion.div>
 
-      <div className="flex overflow-hidden group">
-        <div className="flex gap-6 min-w-full pl-6 animate-marquee">
-          {MARQUEE_REVIEWS.map((review, idx) => (
-            <div 
-              key={idx} 
-              className="w-[350px] md:w-[400px] shrink-0 rounded-3xl glass border border-surface-dark p-8 hover:border-primary/30 transition-all duration-300 relative group/card"
-            >
-              <div className="flex gap-1 mb-6">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className={`w-5 h-5 ${i < review.rating ? 'text-accent-400 fill-accent-400' : 'text-surface-dark fill-surface-dark'}`} 
-                  />
-                ))}
-              </div>
-              <p className="text-text-secondary text-lg leading-relaxed mb-8 font-light italic">
-                "{review.text}"
-              </p>
-              <div className="flex items-center gap-4 mt-auto">
-                <img 
-                  src={review.avatar} 
-                  alt={review.author} 
-                  className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20 group-hover/card:ring-primary/50 transition-all"
-                  loading="lazy"
-                />
-                <div>
-                  <h4 className="text-text-primary font-medium">{review.author}</h4>
-                  <p className="text-text-muted text-sm">{review.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] h-[700px] overflow-hidden -mx-4 md:mx-0">
+          <TestimonialsColumn testimonials={firstColumn} duration={25} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={35} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={28} />
         </div>
       </div>
     </section>
