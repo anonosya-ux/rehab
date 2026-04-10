@@ -10,6 +10,7 @@ import { useContactModal } from '@/components/ContactModal'
 import { useInView } from '@/hooks/useInView'
 import { motion } from 'framer-motion'
 import { Brain, TreePine, Building2 } from 'lucide-react'
+import { LiquidButton } from '@/components/ui/liquid-glass-button'
 const HOME_FAQS = [
   { question: 'Гарантируете ли вы анонимность?', answer: 'Да, мы работаем строго анонимно. Данные пациентов не передаются в государственные структуры. Постановка на наркологический учёт не производится.' },
   { question: 'Сколько стоит лечение?', answer: 'Стоимость зависит от выбранного пакета: Базовый — от 80 000 ₽/мес, Стандарт+ — от 150 000 ₽/мес, Интенсив — от 250 000 ₽/мес, VIP — от 420 000 ₽/мес. Точная стоимость определяется после первичной консультации.' },
@@ -207,12 +208,12 @@ export default function HomePage() {
                 Полностью анонимно. Без обязательств.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
-                <button 
+                <LiquidButton 
                   onClick={() => setOpen(true)}
-                  className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-white text-primary-900 font-black text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+                  className="w-full sm:w-auto"
                 >
                   Забронировать место
-                </button>
+                </LiquidButton>
                 <a
                   href="tel:+74954141113"
                   className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-primary-800/50 border border-white/20 text-white font-bold hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 backdrop-blur-md"

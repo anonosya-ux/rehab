@@ -4,6 +4,7 @@ import { useContactModal } from '@/components/ContactModal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { ParticleTextEffect } from '@/components/ui/particle-text-effect'
 import { GooeyText } from '@/components/ui/gooey-text-morphing'
+import { LiquidButton } from '@/components/ui/liquid-glass-button'
 
 const TRUST_STATS = [
   { value: 10, label: 'лет опыта', suffix: '+' },
@@ -99,18 +100,18 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto mt-4"
           >
-            <button
+            <LiquidButton
               onClick={() => setOpen?.(true)}
-              className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-2xl bg-accent-600 text-white font-bold text-lg hover:bg-accent-700 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(220,38,38,0.4)]"
+              className="w-full sm:w-auto"
             >
               Забронировать место
-            </button>
+            </LiquidButton>
             
             <a
               href="tel:+74954141113"
-              className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 backdrop-blur-sm"
+              className="w-full sm:w-auto px-6 sm:px-10 py-5 sm:py-5 rounded-2xl text-white font-semibold text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 backdrop-blur-sm"
             >
               Узнать больше
             </a>
