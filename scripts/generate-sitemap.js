@@ -11,16 +11,32 @@ const DOMAIN = 'https://lechenie-narkomanii-alkogolizma.ru';
 // Define static routes
 const staticRoutes = [
   '',
-  '/narkomaniya',
-  '/alkogolizm',
-  '/reabilitaciya',
   '/o-centre',
+  '/o-centre/licenzii',
+  '/o-centre/otzyvy',
+  '/o-centre/vrachi',
+  '/o-centre/bezopasnost',
+  '/o-centre/missiya-i-cennosti',
+  '/o-centre/podhod-k-lecheniyu',
+  '/o-centre/usloviya-prebyvaniya',
+  '/reabilitaciya/etapy',
+  '/reabilitaciya/pakety',
+  '/uslugi/lechenie-narkomanii',
+  '/uslugi/lechenie-alkogolizma',
+  '/uslugi/lechenie-igromanii',
+  '/uslugi/detoksikaciya',
+  '/uslugi/gruppovaya-terapiya',
+  '/uslugi/ambulatornye-programmy',
   '/blog',
   '/kontakty',
   '/dlya-rodstvennikov',
   '/privacy',
   '/agreement'
 ];
+
+// Hub Pages
+import { hubData } from '../src/data/hubs.js';
+const hubRoutes = Object.keys(hubData).map(hub => `/${hub}`);
 
 // Read dynamic routes
 // GEO Pages
@@ -31,7 +47,7 @@ const geoRoutes = Object.keys(geoCities).map(city => `/geo/${city}`);
 import { blogPosts } from '../src/data/blog.js';
 const blogRoutes = Object.keys(blogPosts).map(slug => `/blog/${slug}`);
 
-const allRoutes = [...staticRoutes, ...geoRoutes, ...blogRoutes];
+const allRoutes = [...staticRoutes, ...hubRoutes, ...geoRoutes, ...blogRoutes];
 
 // Generate sitemap XML
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
